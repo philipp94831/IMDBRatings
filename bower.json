@@ -1,0 +1,29 @@
+{
+  "name": "imdb_ratings",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Philipp Schirmer <philipp@schirmer-online.de>"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/bower_components"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6",
+    "angular": "angular2#~1.4.8",
+    "angular-ui-router": "~0.2.15",
+    "highcharts": "~4.2.1"
+  }
+}

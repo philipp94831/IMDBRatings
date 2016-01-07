@@ -1,0 +1,14 @@
+extends layout
+
+block scripts
+  script(src='/assets/javascripts/render.js')
+  script(src='bower_components/highcharts/highcharts.js')
+  script.
+    var id="#{id}";
+
+block content
+  div.row
+    div.col-md-6.col-md-offset-3
+      .page-header
+        h1= title
+      #graph
