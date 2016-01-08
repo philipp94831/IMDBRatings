@@ -3,6 +3,10 @@ var Show = function(id) {
   this.seasons = [];
 };
 
+Show.prototype.getId = function() {
+  return this.id;
+}
+
 Show.prototype.setTitle = function(title) {
   this.title = title;
 }

@@ -1,12 +1,20 @@
 var jsdom = require("jsdom");
+var S = require('string');
 var baseUrl = "http://www.imdb.com/";
 
 module.exports.get_index = function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'IMDB Ratings' });
 }
 
 module.exports.get = function(req, res, next) {
-  res.render('test', { title: 'Express', id: req.params.id });
+  jsdom.env(
+    baseUrl + "title/" + req.params.id + '/',
+    ["http://code.jquery.com/jquery.js"],
+    function (err, window) {
+      var title = S(window.$('h1[itemprop="name"]').text()).trim().s;
+      res.render('chart', { title: title, id: req.params.id });
+    }
+  );
 }
 
 module.exports.search = function(req, res, next) {
@@ -21,7 +29,7 @@ module.exports.search = function(req, res, next) {
       var result = url.match(regex);
       var id = result[1];
       console.log("ID: "+  id);
-      res.send(id);
+      res.redirect('/' + id);
     }
   );
 }

@@ -1,12 +1,7 @@
 app.controller('ApplicationController', [
 '$scope',
-'$http',
-'$location',
-function($scope, $http, $location){
+function($scope){
   $scope.search = function() {
-    $http.get('/search?q=' + $scope.q)
-    .success(function(data) {
-      window.location.href = '/' + data;
-    });
+    window.location.href = '/search?q=' + $scope.q;
   };
 }]);
