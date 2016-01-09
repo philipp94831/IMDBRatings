@@ -12,7 +12,7 @@ module.exports.get = function(req, res, next) {
     ["http://code.jquery.com/jquery.js"],
     function (err, window) {
       var show = new Show(id);
-      var title = S(window.$('h1[itemprop="name"]').text()).trim().s;
+      var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
       console.log(title);
       if(title == "") {
         console.log(window.$('#title-overview-widget').prop('outerHTML'));
