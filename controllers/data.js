@@ -35,7 +35,9 @@ module.exports.get = function(req, res, next) {
           season.getEpisodes().forEach(function(episode) {
             episode.setNumber(number++);
           })
+          season.calculateTrendline();
         })
+        show.calculateTrendline();
         res.json(show);
       }
       parseEpisodes(show, finish);

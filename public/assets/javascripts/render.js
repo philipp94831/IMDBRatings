@@ -5,8 +5,10 @@ $(function() {
   $.get( "data/" + id, function( data ) {
     values = [];
     data.seasons.forEach(function(season) {
+      values.push(buildTrendline(season));
       values.push(buildScatter(season));      
     })
+    values.push(buildShowTrendline(data));
     $('#graph').highcharts({
       chart: {
         backgroundColor: "#333",
@@ -119,6 +121,46 @@ $(function() {
     })
   });
 })
+
+function buildTrendline(season) {
+  trendline = {};
+  trendline.type = 'line';
+  trendline.color = colors[(season.number - 1) % colors.length];
+  trendline.name = 'Season ' + season.number + ' Trendline';
+  trendline.data = [{
+    x: season.trendline[1].x,
+    y: season.trendline[1].y,
+    r2: 0.11
+  }, {
+    x: season.trendline[2].x,
+    y: season.trendline[2].y,
+    r2: 0.11
+  }];
+  trendline.marker = {
+    enabled: false,
+  };
+  return trendline;
+}
+
+function buildShowTrendline(show) {
+  trendline = {};
+  trendline.type = 'line';
+  trendline.color = '#FFF';
+  trendline.name = 'Series Trendline';
+  trendline.data = [{
+    x: show.trendline[1].x,
+    y: show.trendline[1].y,
+    r2: 0.11
+  }, {
+    x: show.trendline[2].x,
+    y: show.trendline[2].y,
+    r2: 0.11
+  }];
+  trendline.marker = {
+    enabled: false,
+  };
+  return trendline;
+}
 
 function buildScatter(season) {
   scatter = {};
