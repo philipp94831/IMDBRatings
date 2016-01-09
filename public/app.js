@@ -1,1 +1,1 @@
-var app = angular.module('IMDBRatings', []);
+var app = angular.module('IMDBRatings', ['highcharts-ng']);

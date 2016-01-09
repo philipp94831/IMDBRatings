@@ -25,6 +25,7 @@
     "angular": "angular2#~1.4.8",
     "angular-ui-router": "~0.2.15",
     "highcharts": "~4.2.1",
-    "font-awesome": "fontawesome#~4.5.0"
+    "font-awesome": "fontawesome#~4.5.0",
+    "highcharts-ng": "~0.0.11"
   }
 }

@@ -1,13 +1,13 @@
 extends layout
 
 block scripts
-  script(src='/assets/javascripts/render.js')
-  script(src='bower_components/highcharts/highcharts.js')
+  script(src='/bower_components/highcharts/highcharts.js')
+  script(src='/controllers/graph.js')
+  script(src='/bower_components/highcharts-ng/dist/highcharts-ng.min.js')
   script.
     var id="#{id}";
+    var title="#{title}";
 
 block content
-  #graph
-    div
-      div
-        i.fa.fa-spinner.fa-spin.fa-5x
+  div(ng-controller='GraphController')
+    highchart#chart1(config="highchartsNG")
