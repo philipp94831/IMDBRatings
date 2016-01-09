@@ -9,6 +9,26 @@ function($scope, $http){
       loading: $('<i>').addClass('loading-spinner fa fa-spinner fa-spin fa-5x').prop('outerHTML')
     }
   });
+
+  $scope.seriesTrendline = false;
+  $scope.seasonTrendline = true;
+
+  $scope.toggleSeriesTrendline = function() {
+    $scope.highchartsNG.series.forEach(function(series) {
+      if (series.name.match(/Series Trendline/)) {
+        series.visible = $scope.seriesTrendline;
+      }
+    })
+  }
+
+  $scope.toggleSeasonTrendline = function() {
+    $scope.highchartsNG.series.forEach(function(series) {
+      if (series.name.match(/Season \d+ Trendline/)) {
+        series.visible = $scope.seasonTrendline;
+      }
+    })
+  }
+
   $scope.highchartsNG = {
     options: {
       chart: {
@@ -119,9 +139,6 @@ function($scope, $http){
     loading: 'foo',
     size: {
       height: 700
-    },
-    func: function (chart) {
-      console.log(chart.showLoading);
     }
   };
 
@@ -159,6 +176,7 @@ function($scope, $http){
     trendline.marker = {
       enabled: false,
     };
+    trendline.visible = $scope.seasonTrendline;
     return trendline;
   }
 
@@ -179,6 +197,7 @@ function($scope, $http){
     trendline.marker = {
       enabled: false,
     };
+    trendline.visible = $scope.seriesTrendline;
     return trendline;
   }
 

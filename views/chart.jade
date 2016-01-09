@@ -11,3 +11,9 @@ block scripts
 block content
   div(ng-controller='GraphController')
     highchart#chart1(config="highchartsNG")
+    label
+      | Show Series Trendline
+      input(type="checkbox", name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline()")
+    label
+      | Show Season Trendlines
+      input(type="checkbox", name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline()")
