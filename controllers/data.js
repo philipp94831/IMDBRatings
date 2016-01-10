@@ -1,15 +1,14 @@
-var jsdom = require("jsdom");
 var Show = require('../models/show');
 var Season = require('../models/season');
 var Episode = require('../models/episode');
+var webParser = require('../modules/webParser');
 var S = require('string');
 var baseUrl = "http://www.imdb.com/";
 
 module.exports.get = function(req, res, next) {
   var id = req.params.id;
-  jsdom.env(
+  webParser.getAndParse(
     baseUrl + "title/" + id + '/',
-    ["http://code.jquery.com/jquery.js"],
     function (err, window) {
       var show = new Show(id);
       var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
@@ -18,9 +17,8 @@ module.exports.get = function(req, res, next) {
         console.log(window.$('#title-overview-widget').prop('outerHTML'));
       }
       show.setTitle(title);
-      jsdom.env(
+      webParser.getAndParse(
         baseUrl + "title/" + id + '/episodes',
-        ["http://code.jquery.com/jquery.js"],
         function (err, window) {
           var seasons = window.$('#bySeason > option');
           seasons.each(function() {
@@ -48,17 +46,22 @@ module.exports.get = function(req, res, next) {
             show.calculateTrendline();
             res.json(show);
           }
-          parseEpisodes(show, finish);
+          parseEpisodes(show, finish, function() {res.redirect('/')});
+        },
+        function() {
+          res.redirect('/');
         }
       );
+    },
+    function() {
+      res.redirect('/');
     }
   );
 }
 
-function parseEpisodes(show, callback) {
-  jsdom.env(
+function parseEpisodes(show, callback, error) {
+  webParser.getAndParse(
     baseUrl + 'title/' + show.getId() + '/epdate',
-    ["http://code.jquery.com/jquery.js"],
     function (err, window) {
       var elements = window.$('#tn15content > table > tbody > tr:not(:nth-child(1))');
       elements.each(function() {
@@ -75,6 +78,7 @@ function parseEpisodes(show, callback) {
         }
       })
       callback();
-    }
+    },
+    error
   );
 }
