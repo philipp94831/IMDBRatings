@@ -4,12 +4,12 @@ block scripts
   script(src='/controllers/chart.js')
   script.
     var id="#{id}";
-    var title="#{title}";
+    var title="#{name}";
 
 block content
   div(ng-controller='ChartController')
     highchart#chart1(config="highchartsNG")
-    div.controls
+    div.controls.no-select
       paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
       paper-checkbox(name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline(seasonTrendline)") Show Season Trendlines
       paper-radio-group(ng-model='scale')

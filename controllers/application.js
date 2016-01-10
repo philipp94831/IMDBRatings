@@ -12,7 +12,7 @@ module.exports.get = function(req, res, next) {
     ["http://code.jquery.com/jquery.js"],
     function (err, window) {
       var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
-      res.render('chart', { title: title, id: req.params.id });
+      res.render('chart', { title: 'IMDb Ratings - ' + title, name: title, id: req.params.id });
     }
   );
 }

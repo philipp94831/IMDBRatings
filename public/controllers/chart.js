@@ -9,9 +9,6 @@ function($scope, $http){
       loading: $('<iron-icon>').attr('icon', 'autorenew').addClass('fa-spin loading-spinner').prop('outerHTML')
     }
   });
-
-  $scope.seriesTrendline = false;
-  $scope.seasonTrendline = true;
   var chart;
 
   $scope.toggleSeriesTrendline = function(value) {
@@ -19,6 +16,7 @@ function($scope, $http){
       if (series.name.match(/Series Trendline/)) {
         series.visible = !value;
       }
+      console.log($scope.highchartsNG.series);
     })
   }
 
@@ -120,7 +118,9 @@ function($scope, $http){
           }
         },
         shape: 'square',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        borderRadius: 0,
+        borderWidth: 2
       },
       plotOptions: {
         scatter: {
@@ -138,14 +138,15 @@ function($scope, $http){
       }
     },
     title: {
-        text: title,
+        useHTML: true,
+        text: '<a href="http://imdb.com/title/' + id + '" target="_blank">' + title + '</a>',
         style: {
           color: "black",
           font: '26px Roboto',
           fontWeight: 300,
         }
     },
-    loading: 'foo',
+    loading: true,
     size: {
       height: 500
     },
@@ -155,7 +156,10 @@ function($scope, $http){
     }
   };
 
-  $scope.scale = 'full';
+  $scope.scale = 'auto';
+
+  $scope.seriesTrendline = false;
+  $scope.seasonTrendline = true;
 
   $http.get("data/" + id).then(function successCallback(response) {
     $scope.highchartsNG.loading = false;
