@@ -16,7 +16,6 @@ function($scope, $http){
       if (series.name.match(/Series Trendline/)) {
         series.visible = !value;
       }
-      console.log($scope.highchartsNG.series);
     })
   }
 
@@ -165,7 +164,7 @@ function($scope, $http){
     $scope.highchartsNG.loading = false;
     $scope.highchartsNG.series = transform(response.data);
   }, function errorCallback(response) {
-    console.log('There was an error');
+    $('.loading-spinner').attr('icon', 'error').removeClass('fa-spin').addClass('error');
   });
 
   function transform(data) {

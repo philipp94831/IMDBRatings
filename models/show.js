@@ -23,6 +23,14 @@ Show.prototype.addSeason = function(season) {
   this.seasons.push(season);
 }
 
+Show.prototype.clearSeasons = function() {
+  for(i = this.seasons.length - 1; i >= 0; i--) {
+    if(this.seasons[i].getEpisodes().length == 0) {
+      this.seasons.splice(i, 1);
+    }
+  }
+}
+
 Show.prototype.calculateTrendline = function() {
   var a = 0.0;
   var b1 = 0.0;

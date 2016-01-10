@@ -18,29 +18,39 @@ module.exports.get = function(req, res, next) {
         console.log(window.$('#title-overview-widget').prop('outerHTML'));
       }
       show.setTitle(title);
-      var seasons = window.$('#title-episode-widget > div > div:nth-child(4) > a');
-      seasons.each(function() {
-        var season = new Season(parseInt(window.$(this).text()));
-        show.addSeason(season);
-      });
-      show.getSeasons().sort(function(a, b) {
-        return a.getNumber() - b.getNumber();
-      })
-      var finish = function() {        
-        var number = 1;
-        show.getSeasons().forEach(function(season) {
-          season.getEpisodes().sort(function(a, b) {
-            return a.getNumberInSeason() - b.getNumberInSeason();
+      jsdom.env(
+        baseUrl + "title/" + id + '/episodes',
+        ["http://code.jquery.com/jquery.js"],
+        function (err, window) {
+          var seasons = window.$('#bySeason > option');
+          seasons.each(function() {
+            sId = parseInt(window.$(this).attr('value'));
+            if(sId > 0) {
+              var season = new Season(sId);
+              show.addSeason(season);
+            }
+          });
+          show.getSeasons().sort(function(a, b) {
+            return a.getNumber() - b.getNumber();
           })
-          season.getEpisodes().forEach(function(episode) {
-            episode.setNumber(number++);
-          })
-          season.calculateTrendline();
-        })
-        show.calculateTrendline();
-        res.json(show);
-      }
-      parseEpisodes(show, finish);
+          var finish = function() {        
+            var number = 1;
+            show.clearSeasons();
+            show.getSeasons().forEach(function(season) {
+              season.getEpisodes().sort(function(a, b) {
+                return a.getNumberInSeason() - b.getNumberInSeason();
+              })
+              season.getEpisodes().forEach(function(episode) {
+                episode.setNumber(number++);
+              })
+              season.calculateTrendline();
+            })
+            show.calculateTrendline();
+            res.json(show);
+          }
+          parseEpisodes(show, finish);
+        }
+      );
     }
   );
 }
@@ -57,10 +67,12 @@ function parseEpisodes(show, callback) {
         var episode = new Episode(result[1]);
         regex = /(\d+)\.(\d+)/
         result = window.$(this).find('td:nth-child(1)').text().match(regex);
-        episode.setNumberInSeason(result[2]);
-        episode.setTitle(window.$(this).find('td:nth-child(2) > a').text());
-        episode.setRating(parseFloat(window.$(this).find('td:nth-child(3)').text()));
-        show.getSeasons()[parseInt(result[1]) - 1].addEpisode(episode);
+        if(result !== null) {
+          episode.setNumberInSeason(result[2]);
+          episode.setTitle(window.$(this).find('td:nth-child(2) > a').text());
+          episode.setRating(parseFloat(window.$(this).find('td:nth-child(3)').text()));
+          show.getSeasons()[parseInt(result[1]) - 1].addEpisode(episode);
+        }
       })
       callback();
     }
