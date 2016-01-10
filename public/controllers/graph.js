@@ -138,7 +138,7 @@ function($scope, $http){
     },
     loading: 'foo',
     size: {
-      height: 700
+      height: 500
     }
   };
 

@@ -1,7 +1,4 @@
-app.controller('ApplicationController', [
-'$scope',
-function($scope){
-  $scope.search = function() {
-    window.location.href = '/search?q=' + $scope.q;
-  };
-}]);
+app.controller('ApplicationController', 
+function($scope, SearchService){
+  $scope.search = SearchService.search;
+});

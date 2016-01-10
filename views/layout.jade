@@ -14,8 +14,11 @@ html(ng-app='IMDBRatings')
     script(src='/bower_components/angular/angular.min.js')
     script(src='/app.js')
     script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/bower_components/highcharts/highcharts.js')
+    script(src='/bower_components/highcharts-ng/dist/highcharts-ng.min.js')
 
     script(src='/controllers/search.js')
+    script(src='/services/search.js')
 
     block scripts
 
@@ -24,7 +27,7 @@ html(ng-app='IMDBRatings')
       .container-fluid
         .navbar-inner
           a.navbar-brand(href='/') Home
-          form.navbar-form.navbar-right(ng-controller='SearchController', role='search', ng-submit='search()')
+          form.navbar-form.navbar-right(ng-controller='SearchController', role='search', ng-submit='search(q)')
             .input-group
               input.form-control(type='text', placeholder='Search', ng-model='q')
               span.input-group-btn

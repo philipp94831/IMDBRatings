@@ -21,15 +21,19 @@ module.exports.search = function(req, res, next) {
   var query = req.query.q;
   console.log("query: " + query);
   jsdom.env(
-    baseUrl + "find?q=" + query,
+    baseUrl + "search/title?title=" + query + '&title_type=tv_series',
     ["http://code.jquery.com/jquery.js"],
     function (err, window) {
-      var url = window.$('#main > div > div:nth-child(3) > table > tbody > tr:nth-child(1) > td.result_text > a').attr('href');
-      var regex = /title\/(.+)\//
-      var result = url.match(regex);
-      var id = result[1];
-      console.log("ID: "+  id);
-      res.redirect('/' + id);
+      var series = window.$('#main > table > tbody > tr:nth-child(2) > td.title > a');
+      if(series.length == 0) {
+        res.redirect('/');
+      } else {
+        var regex = /title\/(.+)\//
+        var result = series.attr('href').match(regex);
+        var id = result[1];
+        console.log("ID: "+  id);
+        res.redirect('/' + id);
+      }
     }
   );
 }
