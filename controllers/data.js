@@ -12,10 +12,6 @@ module.exports.get = function(req, res, next) {
     function (err, window) {
       var show = new Show(id);
       var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
-      console.log(title);
-      if(title == "") {
-        console.log(window.$('#title-overview-widget').prop('outerHTML'));
-      }
       show.setTitle(title);
       webParser.getAndParse(
         baseUrl + "title/" + id + '/episodes',
