@@ -1,11 +1,16 @@
 {
   "name": "imdb_ratings",
   "version": "0.0.0",
+  "engines": {
+    "npm": "3.3.x",
+    "node": "5.3.0"
+  },
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
+  "cacheDirectories": ["node_modules", "public/bower_components"],
   "dependencies": {
     "body-parser": "~1.13.2",
     "bower": "^1.7.2",
