@@ -58,23 +58,8 @@ html(ng-app='IMDBRatings')
           span.link
             a(href='http://philipp94831.github.io/', target='_blank')
               | &copy; by Philipp Schirmer
-          span.link
-            a(href='https://github.com/philipp94831/IMDBRatings', target='_blank')
-              iron-icon(icon="code")
-              | Code
-          span.link
-            a(href='https://github.com/philipp94831', target='_blank')
-              iron-icon(icon="account-circle")
-              | GitHub
-          span.link
-            a(href='https://plus.google.com/+PhilippSchirmer', target='_blank')
-              iron-icon(icon="account-circle")
-              | Google+
-          span.link
-            a(href='https://twitter.com/philipp94831', target='_blank')
-              iron-icon(icon="account-circle")
-              | Twitter
-          span.link
-            a(href='http://graphtv.kevinformatics.com/', target='_blank')
-              iron-icon(icon="info-outline")
-              | Inspired by Graph TV
+          each val in [{title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]
+            span.link
+              a(href='#{val.href}', target='_blank')
+                  iron-icon(icon="#{val.icon}")
+                  | #{val.title}

@@ -6,7 +6,7 @@ block scripts
 block content
   #main
     div
-      div Visualize IMDb ratings and trends of TV Series by Episode.
+      div Visualize IMDb Ratings of TV Shows.
       form(is="iron-form", method="get", action="/search")
         paper-input(name='q', label ='Search for a TV Series')
           button.submit(suffix)
@@ -14,18 +14,9 @@ block content
       div
         span Have you seen?
         ul
-          li
-            span.link
-              a(href='/tt0141842')
-                iron-icon(icon="theaters")
-                | The Sopranos
-          li
-            span.link
-              a(href='/tt0903747')
-                iron-icon(icon="theaters")
-                | Breaking Bad
-          li
-            span.link
-              a(href='/tt3032476')
-                iron-icon(icon="theaters")
-                | Better Call Saul
+          each val in [{title: 'The Sopranos', id: 'tt0141842'}, {title: 'Breaking Bad', id: 'tt0903747'}, {title: 'Better Call Saul', id: 'tt3032476'}]
+            li
+              span.link
+                a(href='/#{val.id}')
+                  iron-icon(icon="theaters")
+                  | #{val.title}

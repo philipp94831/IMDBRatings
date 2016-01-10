@@ -21,20 +21,24 @@ Season.prototype.calculateTrendline = function() {
   var b2 = 0.0;
   var c = 0.0;
   var e = 0.0;
+  var total = 0;
   this.episodes.forEach(function(episode) {
-    a += episode.getNumber() * episode.getRating();
-    b1 += episode.getNumber();
-    b2 += episode.getRating();
-    c += episode.getNumber() * episode.getNumber();
-    e +=  episode.getRating();
+    if(!isNaN(episode.getRating())) {
+      a += episode.getNumber() * episode.getRating();
+      b1 += episode.getNumber();
+      b2 += episode.getRating();
+      c += episode.getNumber() * episode.getNumber();
+      e +=  episode.getRating();
+      total++;
+    }
   })
-  a *= this.episodes.length;
+  a *= total;
   var b = b1 * b2;
-  c *= this.episodes.length;
+  c *= total;
   var d = b1 * b1;
   var m = (a - b) / (c - d);
   var f = m * b1;
-  var n = (e - f) / this.episodes.length;
+  var n = (e - f) / total;
   this.trendline = {};
   x1 = this.episodes[0].getNumber();
   x2 = this.episodes[this.episodes.length - 1].getNumber();

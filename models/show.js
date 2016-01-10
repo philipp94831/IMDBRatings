@@ -32,12 +32,14 @@ Show.prototype.calculateTrendline = function() {
   var total = 0;
   this.seasons.forEach(function(season) {
     season.getEpisodes().forEach(function(episode) {
-      a += episode.getNumber() * episode.getRating();
-      b1 += episode.getNumber();
-      b2 += episode.getRating();
-      c += episode.getNumber() * episode.getNumber();
-      e +=  episode.getRating();
-      total++;
+      if(!isNaN(episode.getRating())) {
+        a += episode.getNumber() * episode.getRating();
+        b1 += episode.getNumber();
+        b2 += episode.getRating();
+        c += episode.getNumber() * episode.getNumber();
+        e +=  episode.getRating();
+        total++;
+      }
     })
   });
   a *= total;
