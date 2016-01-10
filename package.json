@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "bower install"
   },
   "cacheDirectories": ["node_modules", "public/bower_components"],
   "dependencies": {
