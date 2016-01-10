@@ -1,5 +1,6 @@
 var jsdom = require("jsdom");
 var S = require('string');
+var request = require('request');
 var baseUrl = "http://www.imdb.com/";
 
 module.exports.get_index = function(req, res, next) {
@@ -7,15 +8,21 @@ module.exports.get_index = function(req, res, next) {
 }
 
 module.exports.get = function(req, res, next) {
-  jsdom.env(
-    baseUrl + "title/" + req.params.id + '/',
-    ["http://code.jquery.com/jquery.js"],
-    function (err, window) {
-      var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
-      res.render('chart', { title: 'IMDb Ratings - ' + title, name: title, id: req.params.id });
+  request(baseUrl + "title/" + req.params.id + '/', function(err, response, body) {
+    if(!err && response.statusCode == 200) {
+      jsdom.env(
+        body,
+        ["http://code.jquery.com/jquery.js"],
+        function (err, window) {
+          var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
+          res.render('chart', { title: 'IMDb Ratings - ' + title, name: title, id: req.params.id });
+        }
+      );
+    } else {
+      res.redirect('/');
     }
-  );
-}
+  }
+)}
 
 module.exports.search = function(req, res, next) {
   var query = req.query.q;
