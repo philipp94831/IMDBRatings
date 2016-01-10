@@ -59,11 +59,11 @@ function($scope, $http){
             stroke: '#000',
             states: {
               hover: {
-                fill: '#474747',
+                fill: '#424242',
                 stroke: '#333',
               },
               select: {
-                fill: '#474747',
+                fill: '#424242',
                 stroke: '#333',
               }
             }
@@ -121,7 +121,9 @@ function($scope, $http){
           } else if (this.series.options.type === "line") {
             return false;
           }
-        }
+        },
+        shape: 'square',
+        backgroundColor: 'white'
       },
       plotOptions: {
         scatter: {
