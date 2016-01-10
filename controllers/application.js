@@ -3,7 +3,7 @@ var S = require('string');
 var baseUrl = "http://www.imdb.com/";
 
 module.exports.get_index = function(req, res, next) {
-  res.render('index', { title: 'IMDB Ratings' });
+  res.render('index', { title: 'IMDb Ratings' });
 }
 
 module.exports.get = function(req, res, next) {
