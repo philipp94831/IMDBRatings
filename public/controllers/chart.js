@@ -191,6 +191,11 @@ function($scope, $http){
         }
       }
     };
+    trendline.states = {
+      hover: {
+        enabled: false
+      }
+    };
     trendline.zIndex = 2;
     trendline.visible = $scope.seasonTrendline;
     return trendline;
@@ -208,6 +213,11 @@ function($scope, $http){
         hover: {
           enabled: false
         }
+      }
+    };
+    trendline.states = {
+      hover: {
+        enabled: false
       }
     };
     trendline.zIndex = 1;
