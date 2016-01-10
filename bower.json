@@ -22,11 +22,10 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "angular": "angular2#~1.4.8",
-    "angular-ui-router": "~0.2.15",
     "highcharts": "~4.2.1",
     "font-awesome": "fontawesome#~4.5.0",
     "highcharts-ng": "~0.0.11",
-    "polymer": "Polymer/polymer#1.2.0",
+    "polymer": "Polymer/polymer#1.2.1",
     "paper-scroll-header-panel": "PolymerElements/paper-scroll-header-panel#~1.0.14",
     "paper-toolbar": "PolymerElements/paper-toolbar#~1.1.2",
     "paper-input": "PolymerElements/paper-input#~1.1.4",
@@ -37,8 +36,5 @@
     "ng-polymer-elements": "~0.3.0",
     "paper-radio-group": "PolymerElements/paper-radio-group#~1.0.8",
     "paper-radio-button": "PolymerElements/paper-radio-button#~1.0.12"
-  },
-  "resolutions": {
-    "polymer": "^1.2.1"
   }
 }
