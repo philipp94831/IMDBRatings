@@ -4,16 +4,9 @@ block scripts
   script(src='/controllers/application.js')
 
 block content
-  .row
-    .col-md-8.col-md-offset-2
-      .page-header
-        h1(align='center')= title
-  .row(ng-controller='ApplicationController')
-    .col-md-6.col-md-offset-3
-      div(style='text-align: center;') Visualize IMDb ratings and trends of TV shows by episode.
-      form(ng-submit='search(q)')
-        .input-group
-          input.form-control(type='text', placeholder='Search', ng-model='q')
-          span.input-group-btn
-            button.btn.btn-info(type='submit')
-              i.glyphicon.glyphicon-search
+  #main
+    div Visualize IMDb ratings and trends of TV Series by Episode.
+    form(is="iron-form", method="get", action="/search")
+      paper-input(name='q', label ='Search for TV Series')
+        button.submit(suffix)
+          paper-icon-button(icon="search")

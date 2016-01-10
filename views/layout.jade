@@ -7,7 +7,6 @@ html(ng-app='IMDBRatings')
     meta(name='viewport', content='width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes')
 
     link(rel='stylesheet', href='/assets/stylesheets/style.css')
-    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='bower_components/font-awesome/css/font-awesome.min.css')
 
     script(src='/bower_components/jquery/dist/jquery.min.js')
@@ -16,21 +15,43 @@ html(ng-app='IMDBRatings')
     script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
     script(src='/bower_components/highcharts/highcharts.js')
     script(src='/bower_components/highcharts-ng/dist/highcharts-ng.min.js')
+    script(src='/bower_components/ng-polymer-elements/ng-polymer-elements.min.js')
+    script(src="/bower_components/webcomponentsjs/webcomponents-lite.min.js")
 
     script(src='/controllers/search.js')
     script(src='/services/search.js')
 
+    link(rel="import", href="/bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html")
+    link(rel="import", href="/bower_components/paper-toolbar/paper-toolbar.html")
+    link(rel="import", href="/bower_components/paper-input/paper-input.html")
+    link(rel="import", href="/bower_components/paper-checkbox/paper-checkbox.html")
+    link(rel="import", href="/bower_components/paper-radio-group/paper-radio-group.html")
+    link(rel="import", href="/bower_components/paper-icon-button/paper-icon-button.html")
+    link(rel="import", href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html")
+    link(rel="import", href="/bower_components/iron-icons/iron-icons.html")
+    link(rel="import", href="/bower_components/font-roboto/roboto.html")
+
+    style(is='custom-style').
+      paper-toolbar paper-input {
+        --paper-input-container-color: white;
+        --paper-input-container-focus-color: white;
+        --paper-input-container-invalid-color: green;
+        --paper-input-container-input-color: white;
+      }
+      .loading-spinner {
+        --iron-icon-height: 72px;
+        --iron-icon-width: 72px;
+      }
+
     block scripts
 
-  body
-    nav.navbar.navbar-default(role='navigation')
-      .container-fluid
-        .navbar-inner
-          a.navbar-brand(href='/') Home
-          form.navbar-form.navbar-right(ng-controller='SearchController', role='search', ng-submit='search(q)')
-            .input-group
-              input.form-control(type='text', placeholder='Search', ng-model='q')
-              span.input-group-btn
-                button.btn.btn-info(type='submit')
-                  i.glyphicon.glyphicon-search
-    block content
+  body.fullbleed.layout.vertical
+    paper-scroll-header-panel.flex
+      paper-toolbar
+        span.title
+            a(href='/') IMDbRatings
+        form(is="iron-form", method="get", action="/search")
+          paper-input#myinput(name='q', label ='Search', no-label-float)
+            button.submit(suffix)
+              paper-icon-button(icon="search")
+      block content

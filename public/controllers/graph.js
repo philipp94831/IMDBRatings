@@ -2,41 +2,53 @@ app.controller('GraphController', [
 '$scope',
 '$http',
 function($scope, $http){
-  var colors = ['#7cb5ec', '#90ed7d', '#f7a35c', '#8085e9', 
-   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'];
+  var colors = ['#2196F3', '#4CAF50', '#FF9800', '#9C27B0', 
+   '#E91E63', '#FFEB3B', '#009688', '#F44336', '#3F51B5'];
   Highcharts.setOptions({
     lang: {
-      loading: $('<i>').addClass('loading-spinner fa fa-spinner fa-spin fa-5x').prop('outerHTML')
+      loading: $('<iron-icon>').attr('icon', 'autorenew').addClass('fa-spin loading-spinner').prop('outerHTML')
     }
   });
 
   $scope.seriesTrendline = false;
   $scope.seasonTrendline = true;
 
-  $scope.toggleSeriesTrendline = function() {
+  $scope.scale = 'auto';
+
+  $scope.toggleSeriesTrendline = function(value) {
     $scope.highchartsNG.series.forEach(function(series) {
       if (series.name.match(/Series Trendline/)) {
-        series.visible = $scope.seriesTrendline;
+        series.visible = !value;
       }
     })
   }
 
-  $scope.toggleSeasonTrendline = function() {
+  $scope.toggleSeasonTrendline = function(value) {
     $scope.highchartsNG.series.forEach(function(series) {
       if (series.name.match(/Season \d+ Trendline/)) {
-        series.visible = $scope.seasonTrendline;
+        series.visible = !value;
       }
     })
   }
+
+  $scope.$watch('scale', function(newVal, oldVal) {
+    if(newVal !== oldVal) {
+      if(newVal === 'auto') {
+        $scope.highchartsNG.options.yAxis.min = null;
+      } else if(newVal === 'full') {
+        $scope.highchartsNG.options.yAxis.min = 0;
+      }
+    }
+  });
 
   $scope.highchartsNG = {
     options: {
       chart: {
-        backgroundColor: "#333",
+        backgroundColor: "white",
         spacingTop: 24,
         style: {
           fontSize: 12,
-          fontFamily: 'Oxygen, sans-serif',
+          fontFamily: 'Roboto',
           fontWeight: 300,
         }
       },
@@ -60,35 +72,34 @@ function($scope, $http){
       },
       yAxis: {
         max: 10,
-        // min: round down the min
         title: {
           text: "IMDb Rating",
           style: {
-            color: "#AAA",
-            fontWeight: 300,
+            color: "#black",
+            fontWeight: 400,
           }
         },
         labels: {
           style: {
-            color: "#999",
+            color: "black",
           }
         },
-        gridLineColor: 'rgba(255, 255, 255, .1)'
+        gridLineColor: '#E0E0E0'
       },
       xAxis: {
-        tickColor: "#333", // hide ticks
-        lineColor: "#333", // hide line
+        tickColor: "white", // hide ticks
+        lineColor: "white", // hide line
         allowDecimals: false,
         title: {
           text: "Episode Number",
           style: {
-            color: "#AAA",
-            fontWeight: 300,
+            color: "black",
+            fontWeight: 400,
           }
         },
         labels: {
           style: {
-            color: "#999",
+            color: "black",
           }
         }
       },
@@ -96,8 +107,7 @@ function($scope, $http){
         enabled: false
       },
       credits: {
-        href: "http://github.com/philipp94831",
-        text: "philipp94831"
+        enabled: false
       },
       tooltip: {
         useHTML: true,
@@ -131,15 +141,16 @@ function($scope, $http){
     title: {
         text: title,
         style: {
-          color: "#FFF",
-          font: '26px Oxygen, sans-serif',
+          color: "black",
+          font: '26px Roboto',
           fontWeight: 300,
         }
     },
     loading: 'foo',
     size: {
       height: 500
-    }
+    },
+    series: []
   };
 
   $http.get("data/" + id).then(function successCallback(response) {
@@ -151,11 +162,11 @@ function($scope, $http){
 
   function transform(data) {
     values = [];
+    values.push(buildShowTrendline(data));
     data.seasons.forEach(function(season) {
       values.push(buildTrendline(season));
       values.push(buildScatter(season));
     })
-    values.push(buildShowTrendline(data));
     return values;
   }
 
@@ -176,6 +187,7 @@ function($scope, $http){
     trendline.marker = {
       enabled: false,
     };
+    trendline.zIndex = 2;
     trendline.visible = $scope.seasonTrendline;
     return trendline;
   }
@@ -183,7 +195,7 @@ function($scope, $http){
   function buildShowTrendline(show) {
     trendline = {};
     trendline.type = 'line';
-    trendline.color = '#FFF';
+    trendline.color = '#9E9E9E';
     trendline.name = 'Series Trendline';
     trendline.data = [{
       x: show.trendline[1].x,
@@ -197,6 +209,7 @@ function($scope, $http){
     trendline.marker = {
       enabled: false,
     };
+    trendline.zIndex = 1;
     trendline.visible = $scope.seriesTrendline;
     return trendline;
   }
@@ -221,6 +234,7 @@ function($scope, $http){
       point.rating = episode.rating;
       data.push(point);
     })
+    scatter.zIndex = 3;
     scatter.data = data;
     return scatter;
   }
