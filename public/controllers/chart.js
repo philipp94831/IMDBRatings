@@ -236,7 +236,7 @@ function($scope, $http){
       point.x = episode.number;
       point.y = episode.rating;
       point.imdb_id = episode.id;
-      point.id = 's' + season.number + 'e' + episode.numberInSeason;
+      point.id = 'S' + padZeros(season.number, 2) + 'E' + padZeros(episode.numberInSeason, 2);
       point.title = $('<div/>').html(episode.title).text();
       point.rating = episode.rating;
       data.push(point);
@@ -244,5 +244,15 @@ function($scope, $http){
     scatter.zIndex = 3;
     scatter.data = data;
     return scatter;
+  }
+
+  function padZeros(number, max) {
+    var str = String(number);
+    
+    while (str.length < max) {
+        str = '0' + str;
+    }
+    
+    return str;
   }
 }]);
