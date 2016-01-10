@@ -70,7 +70,7 @@ function($scope, $http){
           text: "IMDb Rating",
           style: {
             color: "#black",
-            fontWeight: 400,
+            fontWeight: 300,
           }
         },
         labels: {
@@ -81,14 +81,14 @@ function($scope, $http){
         gridLineColor: '#E0E0E0'
       },
       xAxis: {
-        tickColor: "white", // hide ticks
-        lineColor: "white", // hide line
+        tickColor: "transparent", // hide ticks
+        lineColor: "transparent", // hide line
         allowDecimals: false,
         title: {
           text: "Episode Number",
           style: {
             color: "black",
-            fontWeight: 400,
+            fontWeight: 300,
           }
         },
         labels: {
@@ -108,8 +108,8 @@ function($scope, $http){
         formatter: function() {
           if (this.series.options.type === "scatter") {
             return [
-                    "<b>", this.point.id, "</b>", "<br>",
-                    this.point.title, "<br>", 
+                    "<b>", this.point.title, "</b>", "<br>",
+                    "Season ", this.point.season, ", Episode ", this.point.number, "<br>", 
                     "Rating: ", this.point.rating
                     ].join("");
           } else if (this.series.options.type === "line") {
@@ -236,7 +236,8 @@ function($scope, $http){
       point.x = episode.number;
       point.y = episode.rating;
       point.imdb_id = episode.id;
-      point.id = 'S' + padZeros(season.number, 2) + 'E' + padZeros(episode.numberInSeason, 2);
+      point.season = season.number;
+      point.number = episode.numberInSeason;
       point.title = $('<div/>').html(episode.title).text();
       point.rating = episode.rating;
       data.push(point);
