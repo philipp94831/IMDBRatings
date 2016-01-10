@@ -1,4 +1,4 @@
-app.controller('GraphController', [
+app.controller('ChartController', [
 '$scope',
 '$http',
 function($scope, $http){
@@ -12,8 +12,7 @@ function($scope, $http){
 
   $scope.seriesTrendline = false;
   $scope.seasonTrendline = true;
-
-  $scope.scale = 'auto';
+  var chart;
 
   $scope.toggleSeriesTrendline = function(value) {
     $scope.highchartsNG.series.forEach(function(series) {
@@ -32,12 +31,10 @@ function($scope, $http){
   }
 
   $scope.$watch('scale', function(newVal, oldVal) {
-    if(newVal !== oldVal) {
-      if(newVal === 'auto') {
-        $scope.highchartsNG.options.yAxis.min = null;
-      } else if(newVal === 'full') {
-        $scope.highchartsNG.options.yAxis.min = 0;
-      }
+    if(newVal === 'auto') {
+      chart.yAxis[0].setExtremes(null, 10);
+    } else if(newVal === 'full') {
+      chart.yAxis[0].setExtremes(0, 10);
     }
   });
 
@@ -152,8 +149,13 @@ function($scope, $http){
     size: {
       height: 500
     },
-    series: []
+    series: [],
+    func: function(retChart) {
+      chart = retChart;
+    }
   };
+
+  $scope.scale = 'full';
 
   $http.get("data/" + id).then(function successCallback(response) {
     $scope.highchartsNG.loading = false;

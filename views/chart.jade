@@ -1,13 +1,13 @@
 extends layout
 
 block scripts
-  script(src='/controllers/graph.js')
+  script(src='/controllers/chart.js')
   script.
     var id="#{id}";
     var title="#{title}";
 
 block content
-  div(ng-controller='GraphController')
+  div(ng-controller='ChartController')
     highchart#chart1(config="highchartsNG")
     div.controls
       paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline

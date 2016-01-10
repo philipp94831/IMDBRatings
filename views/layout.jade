@@ -27,6 +27,7 @@ html(ng-app='IMDBRatings')
     link(rel="import", href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html")
     link(rel="import", href="/bower_components/iron-icons/iron-icons.html")
     link(rel="import", href="/bower_components/iron-icons/social-icons.html")
+    link(rel="import", href="/bower_components/iron-icons/maps-icons.html")
     link(rel="import", href="/bower_components/font-roboto/roboto.html")
 
     style(is='custom-style').
@@ -56,6 +57,9 @@ html(ng-app='IMDBRatings')
         block content
       footer
         div
+          span.link
+            a(href='http://philipp94831.github.io/', target='_blank')
+              | &copy; by Philipp Schirmer
           span.link
             a(href='https://github.com/philipp94831', target='_blank')
               iron-icon(icon="account-circle")

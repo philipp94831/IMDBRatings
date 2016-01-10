@@ -8,6 +8,24 @@ block content
     div
       div Visualize IMDb ratings and trends of TV Series by Episode.
       form(is="iron-form", method="get", action="/search")
-        paper-input(name='q', label ='Search for TV Series')
+        paper-input(name='q', label ='Search for a TV Series')
           button.submit(suffix)
             paper-icon-button(icon="search")
+      div
+        span Have you seen?
+        ul
+          li
+            span.link
+              a(href='/tt0141842')
+                iron-icon(icon="maps:local-movies")
+                | The Sopranos
+          li
+            span.link
+              a(href='/tt0903747')
+                iron-icon(icon="maps:local-movies")
+                | Breaking Bad
+          li
+            span.link
+              a(href='/tt3032476')
+                iron-icon(icon="maps:local-movies")
+                | Better Call Saul
