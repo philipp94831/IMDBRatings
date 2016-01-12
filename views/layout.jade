@@ -26,6 +26,7 @@ html(ng-app='IMDBRatings')
     link(rel="import", href="/bower_components/paper-icon-button/paper-icon-button.html")
     link(rel="import", href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html")
     link(rel="import", href="/bower_components/iron-icons/iron-icons.html")
+    link(rel="import", href="/bower_components/iron-icons/hardware-icons.html")
     link(rel="import", href="/bower_components/font-roboto/roboto.html")
 
     style(is='custom-style').
@@ -55,11 +56,8 @@ html(ng-app='IMDBRatings')
         block content
       footer
         div
-          span.link
-            a(href='http://philipp94831.github.io/', target='_blank')
-              | &copy; by Philipp Schirmer
-          each val in [{title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]
+          each val in [{title: 'by Philipp Schirmer', href: 'http://philipp94831.github.io/', icon: 'hardware:computer'}, {title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]
             span.link
               a(href='#{val.href}', target='_blank')
                   iron-icon(icon="#{val.icon}")
-                  | #{val.title}
+                  span= val.title
