@@ -1,4 +1,5 @@
 var S = require('string');
+var request = require('request');
 var webParser = require('../modules/webParser');
 var baseUrl = "http://www.imdb.com/";
 
@@ -20,21 +21,31 @@ module.exports.get = function(req, res, next) {
 
 module.exports.search = function(req, res, next) {
   var query = req.query.q;
-  webParser.getAndParse(
-    baseUrl + "search/title?title=" + query + '&title_type=tv_series',
-    function (err, window) {
-      var series = window.$('#main > table > tbody > tr:nth-child(2) > td.title > a');
-      if(series.length == 0) {
-        res.redirect('/');
+  if(query.match(/tt\d{7}/)) {
+    request(baseUrl + '/title/' + query, function(err, response, body) {
+      if(!err && response.statusCode == 200) {
+        res.redirect('/' + query);
       } else {
-        var regex = /title\/(.+)\//
-        var result = series.attr('href').match(regex);
-        var id = result[1];
-        res.redirect('/' + id);
+        res.redirect('/');
       }
-    },
-    function() {
-      res.redirect('/');
-    }
-  );
+    })
+  } else {
+    webParser.getAndParse(
+      baseUrl + "search/title?title=" + query + '&title_type=tv_series',
+      function (err, window) {
+        var series = window.$('#main > table > tbody > tr:nth-child(2) > td.title > a');
+        if(series.length == 0) {
+          res.redirect('/');
+        } else {
+          var regex = /title\/(.+)\//
+          var result = series.attr('href').match(regex);
+          var id = result[1];
+          res.redirect('/' + id);
+        }
+      },
+      function() {
+        res.redirect('/');
+      }
+    );
+  }
 }

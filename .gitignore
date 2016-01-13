@@ -32,3 +32,5 @@ npm-debug.log
 **/bower_components
 
 public/assets/**/*.css
+
+.idea
