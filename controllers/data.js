@@ -2,7 +2,6 @@ var Show = require('../models/show');
 var Season = require('../models/season');
 var Episode = require('../models/episode');
 var webParser = require('../modules/webParser');
-var S = require('string');
 var baseUrl = "http://www.imdb.com/";
 
 module.exports.get = function(req, res, next) {
@@ -11,7 +10,7 @@ module.exports.get = function(req, res, next) {
     baseUrl + "title/" + id + '/',
     function (err, window) {
       var show = new Show(id);
-      var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
+      var title = window.$('#overview-top > h1 > span.itemprop').text().trim();
       show.setTitle(title);
       webParser.getAndParse(
         baseUrl + "title/" + id + '/episodes',
@@ -45,12 +44,12 @@ module.exports.get = function(req, res, next) {
           parseEpisodes(show, finish, function() {res.redirect('/')});
         },
         function() {
-          res.redirect('/');
+          res.json({});
         }
       );
     },
     function() {
-      res.redirect('/');
+      res.json({});
     }
   );
 }

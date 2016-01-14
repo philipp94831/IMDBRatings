@@ -1,4 +1,3 @@
-var S = require('string');
 var request = require('request');
 var webParser = require('../modules/webParser');
 var baseUrl = "http://www.imdb.com/";
@@ -12,10 +11,18 @@ module.exports.get_index = function(req, res, next) {
 module.exports.get = function(req, res, next) {
   webParser.getAndParse(baseUrl + "title/" + req.params.id + '/',
     function (err, window) {
-      var title = S(window.$('#overview-top > h1 > span.itemprop').text()).trim().s;
-      res.render('chart', { title: 'IMDb Ratings - ' + title, name: title, id: req.params.id });
+      var type = window.$('#overview-top > div.infobar').text().trim();
+      console.log(type);
+      if(type.startsWith('TV Series')) {
+        var title = window.$('#overview-top > h1 > span.itemprop').text().trim();
+        res.render('chart', { title: 'IMDb Ratings - ' + title, name: title, id: req.params.id });
+      } else {
+        req.session.message = "Title is not a series";
+        res.redirect('/');
+      }
     },
     function() {
+      req.session.message = "Series not found";
       res.redirect('/');
     }
   )
