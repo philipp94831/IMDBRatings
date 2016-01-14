@@ -35,6 +35,7 @@
     "paper-checkbox": "PolymerElements/paper-checkbox#~1.1.0",
     "ng-polymer-elements": "~0.3.0",
     "paper-radio-group": "PolymerElements/paper-radio-group#~1.0.8",
-    "paper-radio-button": "PolymerElements/paper-radio-button#~1.0.12"
+    "paper-radio-button": "PolymerElements/paper-radio-button#~1.0.12",
+    "paper-toast": "PolymerElements/paper-toast#~1.1.1"
   }
 }
