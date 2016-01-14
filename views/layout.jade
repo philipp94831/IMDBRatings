@@ -29,21 +29,7 @@ html(ng-app='IMDBRatings')
     link(rel="import", href="/bower_components/iron-icons/iron-icons.html")
     link(rel="import", href="/bower_components/iron-icons/hardware-icons.html")
     link(rel="import", href="/bower_components/font-roboto/roboto.html")
-
-    style(is='custom-style').
-      paper-toolbar paper-input {
-        --paper-input-container-color: white;
-        --paper-input-container-focus-color: white;
-        --paper-input-container-invalid-color: green;
-        --paper-input-container-input-color: white;
-      }
-      .loading-spinner {
-        --iron-icon-height: 72px;
-        --iron-icon-width: 72px;
-      }
-      paper-toast.error {
-        --paper-toast-color: #F44336;
-      }
+    link(rel="import", href="/assets/stylesheets/custom-style.html")
 
     block scripts
 

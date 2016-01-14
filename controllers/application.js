@@ -30,7 +30,10 @@ module.exports.get = function(req, res, next) {
 
 module.exports.search = function(req, res, next) {
   var query = req.query.q;
-  if(query.match(/tt\d{7}/)) {
+  if(query.length == 0) {
+    req.session.message = "Please submit a valid query";
+    res.redirect('/');
+  } else if(query.match(/tt\d{7}/)) {
     request(baseUrl + '/title/' + query, function(err, response, body) {
       if(!err && response.statusCode == 200) {
         res.redirect('/' + query);
