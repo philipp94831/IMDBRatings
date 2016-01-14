@@ -4,8 +4,9 @@ var webParser = require('../modules/webParser');
 var baseUrl = "http://www.imdb.com/";
 
 module.exports.get_index = function(req, res, next) {
-  res.render('index', { title: 'IMDb Ratings', message: req.session.message });
-  req.session.message = null;
+  message = req.session.message;
+  req.session.message = undefined;
+  res.render('index', { title: 'IMDb Ratings', message: message });
 }
 
 module.exports.get = function(req, res, next) {
