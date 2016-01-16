@@ -22,27 +22,32 @@ paper-toolbar paper-icon-button {
 }
 
 main {
-  height: ~"calc(100% - 64px)";
+  height: ~"calc(100vh - 128px)";
   width: 100%;
-  margin: auto;
-  display: table;
+  overflow: auto;
 }
 
-main > div {
+main > div {  
+  margin: auto;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+main > div > div {
   display: table-cell;
   vertical-align: middle;
+  padding: 20px;
   text-align: center;
 }
 
 #main {
-  width: 60%;
+  width: 40%;
   margin: auto;
 }
 
 #main form {
-  width: 60%;
-  margin: auto;
-  margin-bottom: 19px;
+  padding-bottom: 19px;
   text-align: left;
 }
 
@@ -64,20 +69,11 @@ paper-checkbox {
   padding: 12px;
 }
 
-.controls {
-  text-align: center;
-}
-
-paper-scroll-header-panel {
-  height: 100%;
-}
-
 footer {
   position: fixed;
   bottom: 0;
   text-align: center;
   width: 100%;
-  background-color: white;
 }
 
 footer > div {  
@@ -99,7 +95,7 @@ footer > div {
   margin-right: 6px;
 }
 
-#main ul {
+ul.link-list {
   list-style: none;
   padding-left: 0px;
 }
@@ -125,11 +121,33 @@ div.error h1 {
   display: inline;
 }
 
+paper-card + paper-card {
+  margin-top: 20px;
+}
+
 paper-card.graph {
-  width: ~"calc(100% - 40px)";
-  margin: 20px;
+  width: 100%;
 }
 
 paper-card.info img {
   height: 200px;
+}
+
+.summary {
+  float: right;
+  width: 250px;
+  margin-left: 20px;
+}
+
+.summary p {
+  margin: 0px;
+  text-align: left;
+}
+
+.summary p + p {
+  margin-top: 1em;
+}
+
+paper-card .card-content {
+  padding-top: 5px;
 }

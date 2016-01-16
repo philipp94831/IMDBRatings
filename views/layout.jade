@@ -20,7 +20,7 @@ html(ng-app='IMDBRatings')
     script(src='/bower_components/ng-polymer-elements/ng-polymer-elements.min.js')
     script(src="/bower_components/webcomponentsjs/webcomponents-lite.min.js")
 
-    link(rel="import", href="/bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html")
+    link(rel="import", href="/bower_components/paper-header-panel/paper-header-panel.html")
     link(rel="import", href="/bower_components/paper-toolbar/paper-toolbar.html")
     link(rel="import", href="/bower_components/paper-input/paper-input.html")
     link(rel="import", href="/bower_components/paper-checkbox/paper-checkbox.html")
@@ -38,7 +38,7 @@ html(ng-app='IMDBRatings')
     block scripts
 
   body.fullbleed.layout.vertical
-    paper-scroll-header-panel
+    paper-header-panel
       paper-toolbar
         span.title
             a(href='/') IMDb Ratings
@@ -50,7 +50,8 @@ html(ng-app='IMDBRatings')
         if message
           paper-toast(text="#{message}", opened, duration="10000")
         div
-          block content
+          div
+            block content
       footer
         div
           each val in [{title: 'by Philipp Schirmer', href: 'http://philipp94831.github.io/', icon: 'hardware:computer'}, {title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]

@@ -11,12 +11,20 @@ block content
     paper-card.graph
       .card-content
         highchart(config="highchartsNG")
-      div.card-actions.controls.no-select
+      .card-actions.no-select
         paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
         paper-checkbox(name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline(seasonTrendline)") Show Season Trendlines
         paper-radio-group(ng-model='scale')
           paper-radio-button(name='auto') Auto Scale Y-Axis
           paper-radio-button(name='full') Scale Y-Axis from 0 to 10
-    paper-card.info(heading='#{name}')
+    paper-card.info(heading='#{name} #{time}')
       .card-content
-        img(src='http://ia.media-imdb.com/images/M/MV5BMTIxMjc4NTA2Nl5BMl5BanBnXkFtZTYwNTU2MzU5._V1_SX214_AL_.jpg')
+        img(src='#{img}')
+        div.summary
+          p Rated #{rating}/10.0 by #{users} Users
+          p= summary
+      .card-actions        
+        span.link
+          a(href='http://imdb.com/title/#{id}/', target='_blank')
+              iron-icon(icon="language")
+              span IMDb

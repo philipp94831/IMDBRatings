@@ -14,7 +14,14 @@ module.exports.get = function(req, res, next) {
       var type = window.$('#overview-top > div.infobar').text().trim();
       if(type.startsWith('TV Series')) {
         var title = window.$('#overview-top > h1 > span.itemprop').text().trim();
-        res.render('chart', { title: title, name: title, id: req.params.id });
+        res.locals.name = title;
+        res.locals.id = req.params.id;
+        res.locals.time = window.$('#overview-top > h1 > span.nobr').text();
+        res.locals.img = window.$('#img_primary > div.image > a > img').attr('src');
+        res.locals.summary = window.$('#overview-top > p:nth-child(6)').text().trim();
+        res.locals.rating = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > strong > span').text().trim();
+        res.locals.users = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > a:nth-child(3) > span').text().trim();
+        res.render('chart', { title: title });
       } else {
         req.session.message = "Title is not a series";
         res.redirect('/');
