@@ -21,26 +21,29 @@ paper-toolbar paper-icon-button {
   color: white;
 }
 
+main {
+  height: ~"calc(100% - 64px)";
+  width: 100%;
+  margin: auto;
+  display: table;
+}
+
+main > div {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
 #main {
   width: 60%;
   margin: auto;
-  display: table;
-  height: 100%;
-}
-
-#main > div {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-#main > div > div {
-  text-align: center;
 }
 
 #main form {
   width: 60%;
   margin: auto;
   margin-bottom: 19px;
+  text-align: left;
 }
 
 paper-toolbar .title {
@@ -53,8 +56,8 @@ paper-toolbar paper-input {
 }
 
 a {
-    text-decoration: inherit;
-    color: inherit;
+  text-decoration: inherit;
+  color: inherit;
 }
 
 paper-checkbox {
@@ -65,12 +68,20 @@ paper-checkbox {
   text-align: center;
 }
 
+paper-scroll-header-panel {
+  height: 100%;
+}
+
 footer {
   position: fixed;
   bottom: 0;
   text-align: center;
-  padding: 20px 0;
   width: 100%;
+  background-color: white;
+}
+
+footer > div {  
+  padding: 20px 0;
 }
 
 .link {
@@ -86,10 +97,6 @@ footer {
 
 .link a > iron-icon {
   margin-right: 6px;
-}
-
-main {
-  height: ~"calc(100% - 64px)";
 }
 
 #main ul {
@@ -116,4 +123,13 @@ div.error > span > * {
 
 div.error h1 {
   display: inline;
+}
+
+paper-card.graph {
+  width: ~"calc(100% - 40px)";
+  margin: 20px;
+}
+
+paper-card.info img {
+  height: 200px;
 }

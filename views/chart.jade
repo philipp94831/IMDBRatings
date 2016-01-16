@@ -8,10 +8,15 @@ block scripts
 
 block content
   div(ng-controller='ChartController')
-    highchart#chart1(config="highchartsNG")
-    div.controls.no-select
-      paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
-      paper-checkbox(name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline(seasonTrendline)") Show Season Trendlines
-      paper-radio-group(ng-model='scale')
-        paper-radio-button(name='auto') Auto Scale Y-Axis
-        paper-radio-button(name='full') Scale Y-Axis from 0 to 10
+    paper-card.graph
+      .card-content
+        highchart(config="highchartsNG")
+      div.card-actions.controls.no-select
+        paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
+        paper-checkbox(name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline(seasonTrendline)") Show Season Trendlines
+        paper-radio-group(ng-model='scale')
+          paper-radio-button(name='auto') Auto Scale Y-Axis
+          paper-radio-button(name='full') Scale Y-Axis from 0 to 10
+    paper-card.info(heading='#{name}')
+      .card-content
+        img(src='http://ia.media-imdb.com/images/M/MV5BMTIxMjc4NTA2Nl5BMl5BanBnXkFtZTYwNTU2MzU5._V1_SX214_AL_.jpg')
