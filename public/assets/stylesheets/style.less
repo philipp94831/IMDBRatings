@@ -11,10 +11,6 @@ body {
   color: #424242;
 }
 
-.loading-spinner.error {
-  color: #F44336;
-}
-
 .submit {
   border:0;
   background:transparent;
@@ -108,4 +104,16 @@ main {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+iron-icon.error {
+  color: #F44336;
+}
+
+div.error > span > * {
+  vertical-align: middle;
+}
+
+div.error h1 {
+  display: inline;
 }
