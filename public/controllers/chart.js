@@ -4,7 +4,7 @@ function($scope, $http){
    '#E91E63', '#FFEB3B', '#009688', '#F44336', '#3F51B5'];
   Highcharts.setOptions({
     lang: {
-      loading: $('<iron-icon>').attr('icon', 'autorenew').addClass('fa-spin loading-spinner').prop('outerHTML')
+      loading: $('<iron-icon>').attr('icon', 'autorenew').addClass('fa-spin loading-spinner gray').prop('outerHTML')
     }
   });
   var chart;
@@ -145,7 +145,7 @@ function($scope, $http){
     },
     loading: true,
     size: {
-      height: 500
+      height: $('main > div > div').height() - 60
     },
     series: [],
     func: function(retChart) {

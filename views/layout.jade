@@ -44,8 +44,10 @@ html(ng-app='IMDBRatings')
       paper-toolbar
         span.title
           a(href='/') IMDb Ratings
-        a.nav(href='/top')
-          iron-icon(icon='stars')
+        span.nav.link
+          a(href='/top')
+            iron-icon(icon="stars")
+            span Top
         form.nav(is="iron-form", method="get", action="/search")
           paper-input#myinput(name='q', label ='Search', no-label-float, required)
             button.submit(suffix)
@@ -58,9 +60,9 @@ html(ng-app='IMDBRatings')
             block content
       footer
         paper-material(elevation='3')
-          .center
+          .layout-flex.row.wrap.center
             each val in [{title: 'by Philipp Schirmer', href: 'http://philipp94831.github.io/', icon: 'hardware:computer'}, {title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]
-              span.link
+              span.link.gray
                 a(href='#{val.href}', target='_blank')
                   iron-icon(icon="#{val.icon}")
                   span= val.title

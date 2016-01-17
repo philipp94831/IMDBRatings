@@ -7,10 +7,6 @@ body {
   background-color: transparent !important;
 }
 
-.loading-spinner {
-  color: #424242;
-}
-
 .submit {
   border: 0;
   background: transparent;
@@ -40,7 +36,7 @@ main > div > div {
   padding: 20px;
 }
 
-.center {
+.hcenter {
   text-align: center;
 }
 
@@ -50,7 +46,7 @@ main > div > div {
 }
 
 #main {
-  width: 40%;
+  max-width: 550px;
 }
 
 #main form {
@@ -90,9 +86,14 @@ footer div {
 
 .link {
   vertical-align: middle;
+}
+
+.gray {  
   color: #424242;
-  margin-left: 12px;
-  margin-right: 12px;
+}
+
+footer .link + .link {  
+  padding-left: 24px;
 }
 
 .link a > * {
@@ -100,7 +101,7 @@ footer div {
 }
 
 .link a > iron-icon {
-  margin-right: 6px;
+  padding-right: 6px;
 }
 
 ul.link-list {
@@ -161,9 +162,28 @@ paper-dialog h2 {
   top: ~'calc(50% - 36px)' !important;
 }
 
-.flex{
+.layout-flex {
   display: flex;
-  flex-flow: row wrap;
+}
+
+.layout-flex.row {
+  flex-direction: row;
+}
+
+.layout-flex.column {
+  flex-direction: column;
+}
+
+.layout-flex > * {
+  flex-basis: auto;
+}
+
+.layout-flex.wrap {
+  flex-wrap: wrap;
+}
+
+.layout-flex.center {
+  justify-content: center;
 }
 
 paper-card + paper-card {
@@ -177,10 +197,6 @@ paper-card + paper-card {
 
 .top-title {
   width: 450px;
-}
-
-.content {
-  display: flex;
 }
 
 .summary {

@@ -10,7 +10,7 @@ block content
   div(ng-controller='ChartController')
     div
       highchart(config="highchartsNG")
-      .center.no-select
+      .layout-flex.wrap.row.center.no-select
         paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
         paper-checkbox(name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline(seasonTrendline)") Show Season Trendlines
         paper-radio-group(ng-model='scale')
@@ -18,14 +18,14 @@ block content
           paper-radio-button(name='full') Scale Y-Axis from 0 to 10
     paper-dialog#dialog.info
       h2 #{name} #{time}
-      .content
+      .layout-flex
         img(src='#{img}')
         div.summary
           p Rated #{rating}/10 by #{users} users
           p= summary
           p With #{actors.join(', ')}
       .buttons
-        span.link
+        span.link.gray
           a(href='http://imdb.com/title/#{id}/', target='_blank')
               iron-icon(icon="language")
               span IMDb

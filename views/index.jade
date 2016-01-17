@@ -4,18 +4,17 @@ block scripts
   script(src='/controllers/application.js')
 
 block content
-  #main.layout-center
-    p.center Visualize IMDb Ratings of TV Shows.
+  #main.layout-center.layout-flex.column
+    p.hcenter Visualize IMDb Ratings of TV Shows.
     form(is="iron-form", method="get", action="/search")
       paper-input(name='q', label ='Search for a TV Series', required)
         button.submit(suffix)
           paper-icon-button(icon="search")
-    .center
-      span Have you seen?
-      ul.link-list
+    .hcenter
+      p Have you seen?
+      .layout-flex.column
         each val in [{title: 'The Sopranos', id: 'tt0141842'}, {title: 'Breaking Bad', id: 'tt0903747'}, {title: 'Better Call Saul', id: 'tt3032476'}]
-          li
-            span.link
-              a(href='/#{val.id}')
-                iron-icon(icon="theaters")
-                span= val.title
+          span.link.gray
+            a(href='/#{val.id}')
+              iron-icon(icon="theaters")
+              span= val.title
