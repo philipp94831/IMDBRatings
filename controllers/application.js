@@ -37,7 +37,7 @@ module.exports.get_top = function(req, res, next) {
         });
         shows.push(show);
       })
-      res.render('top', { shows: shows });
+      res.render('top', { title: 'Top TV Shows', shows: shows });
     },
     function() {
       req.session.message = "Error loading Top TV Shows";

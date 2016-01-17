@@ -116,7 +116,6 @@ function($scope, $http){
         },
         shape: 'square',
         backgroundColor: 'white',
-        borderRadius: 0,
         borderWidth: 2
       },
       plotOptions: {
