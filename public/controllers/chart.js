@@ -144,7 +144,7 @@ function($scope, $http){
     },
     loading: true,
     size: {
-      height: $('main > div > div').height() - 60
+      height: Math.max($('main > div > div').height() - 60, 250)
     },
     series: [],
     func: function(retChart) {
