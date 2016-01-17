@@ -1,6 +1,4 @@
-app.controller('ChartController', [
-'$scope',
-'$http',
+app.controller('ChartController',
 function($scope, $http){
   var colors = ['#2196F3', '#4CAF50', '#FF9800', '#9C27B0', 
    '#E91E63', '#FFEB3B', '#009688', '#F44336', '#3F51B5'];
@@ -138,7 +136,7 @@ function($scope, $http){
     },
     title: {
         useHTML: true,
-        text: '<a href="http://imdb.com/title/' + id + '" target="_blank">' + title + '</a>',
+        text: '<span class="clickable" title="Click for more info" onclick="openDialog()">' + title + '</span>',
         style: {
           color: "black",
           font: '26px Roboto',
@@ -260,4 +258,8 @@ function($scope, $http){
     
     return str;
   }
-}]);
+});
+
+function openDialog() {
+  $('#dialog').trigger('open');
+}

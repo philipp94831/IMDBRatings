@@ -1,10 +1,8 @@
 extends layout
 
 block content
-  #main
-    div
-      div.error
-        span
-          iron-icon.error(icon='report')
-          h1 #{error.status} #{error.message}
-        pre #{error.stack}
+  div.error.layout-center
+    .center
+      iron-icon.error(icon='report')
+      h1 #{error.status} #{error.message}
+    pre #{error.stack}
