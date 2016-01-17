@@ -9,18 +9,18 @@ module.exports.get_index = function(req, res, next) {
 }
 
 module.exports.get_top = function(req, res, next) {
-  webParser.getAndParse(baseUrl + "chart/toptv",
+  webParser.getAndParse(baseUrl + "search/title?num_votes=5000,&sort=user_rating,desc&title_type=tv_series",
     function (err, window) {
-      var elements = window.$('#main > div > span > div > div > div.lister > table > tbody > tr');
+      var elements = window.$('#main > table > tbody > tr.detailed');
       shows = [];
       elements.each(function() {
         show = {};
-        show.title = window.$(this).find('td.titleColumn > a').text().trim();
+        show.title = window.$(this).find('td.title > a').text().trim();
         var regex = /title\/(.+)\//
-        var result = window.$(this).find('td.titleColumn > a').attr('href').match(regex);
+        var result = window.$(this).find('td.title > a').attr('href').match(regex);
         show.id = result[1];
-        show.rating = window.$(this).find('td.ratingColumn.imdbRating > strong').text().trim();
-        src = window.$(this).find('td.posterColumn > a > img').attr('src');
+        show.rating = window.$(this).find('td.title > div > div > span.rating-rating > span.value').text().trim();
+        src = window.$(this).find('td.image > a > img').attr('src');
         if(src.match(/.*jpg/)) {
           result = src.match(/(\.[^\.]+)\.jpg/);
           show.img = src.replace(result[1], '');
@@ -30,6 +30,7 @@ module.exports.get_top = function(req, res, next) {
         } else {
           show.img = src;
         }
+        show.outline = window.$(this).find('td.title > span.outline').text().trim();
         shows.push(show);
       })
       res.render('top', { shows: shows });

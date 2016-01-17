@@ -7,11 +7,13 @@ block content
   div.flex
     each show in shows
       .top-title.layout-center
-        paper-card(heading='#{show.title}')
-          .card-content.content
-            img(src='#{show.img}')
-            .summary
-              p Rated #{show.rating}/10
+        paper-card(heading='#{show.title}')          
+          a(href='http://imdb.com/title/#{show.id}', target='_blank')
+            .card-content.content
+              img(src='#{show.img}')
+              .summary
+                p Rated #{show.rating}/10
+                p= show.outline
           .card-actions
             span.link
               a(href='/#{show.id}')
