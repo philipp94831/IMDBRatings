@@ -8,7 +8,7 @@ block scripts
 
 block content
   div(ng-controller='ChartController')
-    .graph
+    div
       highchart(config="highchartsNG")
       .center.no-select
         paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
@@ -23,6 +23,7 @@ block content
         div.summary
           p Rated #{rating}/10 by #{users} users
           p= summary
+          p With #{actors.join(', ')}
       .buttons
         span.link
           a(href='http://imdb.com/title/#{id}/', target='_blank')

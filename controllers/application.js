@@ -31,6 +31,10 @@ module.exports.get_top = function(req, res, next) {
           show.img = src;
         }
         show.outline = window.$(this).find('td.title > span.outline').text().trim();
+        show.actors = [];
+        window.$(this).find('td.title > span.credit > a').each(function() {
+          show.actors.push(window.$(this).text().trim());
+        });
         shows.push(show);
       })
       res.render('top', { shows: shows });
@@ -55,6 +59,10 @@ module.exports.get = function(req, res, next) {
         res.locals.summary = window.$('#overview-top > p:nth-child(6)').text().trim();
         res.locals.rating = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > strong > span').text().trim();
         res.locals.users = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > a:nth-child(3) > span').text().trim();
+        res.locals.actors = [];
+        window.$('#overview-top > div:nth-child(9) > a > span').each(function() {
+          res.locals.actors.push(window.$(this).text().trim());
+        });
         res.render('chart', { title: title });
       } else {
         req.session.message = "Title is not a series";
