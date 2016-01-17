@@ -17,11 +17,12 @@ block content
           paper-radio-button(name='auto') Auto Scale Y-Axis
           paper-radio-button(name='full') Scale Y-Axis from 0 to 10
     paper-dialog#dialog.info
-      h2.center #{name} #{time}
-      img(src='#{img}')
-      div.summary
-        p Rated #{rating}/10 by #{users} users
-        p= summary
+      h2 #{name} #{time}
+      .content
+        img(src='#{img}')
+        div.summary
+          p Rated #{rating}/10 by #{users} users
+          p= summary
       .buttons
         span.link
           a(href='http://imdb.com/title/#{id}/', target='_blank')

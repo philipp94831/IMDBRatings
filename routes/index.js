@@ -5,6 +5,7 @@ var controller = require('../controllers/application');
 /* GET home page. */
 router.get('/', controller.get_index);
 router.get('/search', controller.search);
+router.get('/top', controller.get_top);
 router.get('/:id', controller.get);
 
 module.exports = router;

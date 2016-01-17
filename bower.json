@@ -37,6 +37,7 @@
     "paper-radio-button": "PolymerElements/paper-radio-button#~1.0.12",
     "paper-toast": "PolymerElements/paper-toast#~1.1.1",
     "paper-header-panel": "PolymerElements/paper-header-panel#~1.1.2",
-    "paper-dialog": "PolymerElements/paper-dialog#~1.0.3"
+    "paper-dialog": "PolymerElements/paper-dialog#~1.0.3",
+    "paper-card": "PolymerElements/paper-card#~1.0.9"
   }
 }

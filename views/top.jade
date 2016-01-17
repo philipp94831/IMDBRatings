@@ -1,0 +1,19 @@
+extends layout
+
+block scripts
+  script(src='/controllers/application.js')
+
+block content
+  div.flex
+    each show in shows
+      .top-title.layout-center
+        paper-card(heading='#{show.title}')
+          .card-content.content
+            img(src='#{show.img}')
+            .summary
+              p Rated #{show.rating}/10
+          .card-actions
+            span.link
+              a(href='/#{show.id}')
+                iron-icon(icon="theaters")
+                span Graph it

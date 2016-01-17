@@ -8,6 +8,39 @@ module.exports.get_index = function(req, res, next) {
   res.render('index', { message: message });
 }
 
+module.exports.get_top = function(req, res, next) {
+  webParser.getAndParse(baseUrl + "chart/toptv",
+    function (err, window) {
+      var elements = window.$('#main > div > span > div > div > div.lister > table > tbody > tr');
+      shows = [];
+      elements.each(function() {
+        show = {};
+        show.title = window.$(this).find('td.titleColumn > a').text().trim();
+        var regex = /title\/(.+)\//
+        var result = window.$(this).find('td.titleColumn > a').attr('href').match(regex);
+        show.id = result[1];
+        show.rating = window.$(this).find('td.ratingColumn.imdbRating > strong').text().trim();
+        src = window.$(this).find('td.posterColumn > a > img').attr('src');
+        if(src.match(/.*jpg/)) {
+          result = src.match(/(\.[^\.]+)\.jpg/);
+          show.img = src.replace(result[1], '');
+        } else if(src.match(/.*png/)) {
+          result = src.match(/(\.[^\.]+)\.png/);
+          show.img = src.replace(result[1], '');
+        } else {
+          show.img = src;
+        }
+        shows.push(show);
+      })
+      res.render('top', { shows: shows });
+    },
+    function() {
+      req.session.message = "Error loading Top TV Shows";
+      res.redirect('/');
+    }
+  )
+}
+
 module.exports.get = function(req, res, next) {
   webParser.getAndParse(baseUrl + "title/" + req.params.id + '/',
     function (err, window) {
