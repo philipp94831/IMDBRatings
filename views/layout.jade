@@ -17,53 +17,58 @@ html(ng-app='IMDBRatings')
     script(src='/app.js')
     script(src='/bower_components/highcharts/highcharts.js')
     script(src='/bower_components/highcharts-ng/dist/highcharts-ng.min.js')
-    script(src='/bower_components/ng-polymer-elements/ng-polymer-elements.min.js')
+    script(src='/bower_components/ng-polymer-elements/ng-polymer-elements.js')
     script(src="/bower_components/webcomponentsjs/webcomponents-lite.min.js")
 
     link(rel="import", href="/bower_components/paper-header-panel/paper-header-panel.html")
     link(rel="import", href="/bower_components/paper-toolbar/paper-toolbar.html")
     link(rel="import", href="/bower_components/paper-input/paper-input.html")
-    link(rel="import", href="/bower_components/paper-checkbox/paper-checkbox.html")
-    link(rel="import", href="/bower_components/paper-button/paper-button.html")
     link(rel="import", href="/bower_components/paper-toast/paper-toast.html")
     link(rel="import", href="/bower_components/paper-material/paper-material.html")
-    link(rel="import", href="/bower_components/paper-card/paper-card.html")
     link(rel="import", href="/bower_components/paper-drawer-panel/paper-drawer-panel.html")
-    link(rel="import", href="/bower_components/paper-dialog/paper-dialog.html")
+    link(rel="import", href="/bower_components/paper-menu/paper-menu.html")
+    link(rel="import", href="/bower_components/paper-item/paper-icon-item.html")
     link(rel="import", href="/bower_components/paper-styles/typography.html")
     link(rel="import", href="/bower_components/paper-styles/color.html")
-    link(rel="import", href="/bower_components/paper-radio-group/paper-radio-group.html")
     link(rel="import", href="/bower_components/paper-icon-button/paper-icon-button.html")
     link(rel="import", href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html")
     link(rel="import", href="/bower_components/iron-icons/iron-icons.html")
     link(rel="import", href="/bower_components/iron-icons/hardware-icons.html")
-    link(rel="import", href="/bower_components/font-roboto/roboto.html")
     link(rel="import", href="/assets/stylesheets/custom-style.html")
 
     block scripts
 
   body.fullbleed
-    paper-header-panel
-      paper-toolbar
-        span.title
-          a(href='/')= settings.title
-        span.nav.link
-          a(href='/top')
-            iron-icon(icon="stars")
-            span Top
-        form.nav(is="iron-form", method="get", action="/search")
-          paper-input#myinput(name='q', label ='Search', no-label-float, required)
-            button.submit(suffix)
-              paper-icon-button(icon="search")
-      main.layout.vertical.center
-        if message
-          paper-toast(text="#{message}", opened, duration="10000")
-        block content
-      footer
-        paper-material(elevation='3')
-          .layout.horizontal.wrap.center-justified
-            each val in [{title: 'by Philipp Schirmer', href: 'http://philipp94831.github.io/', icon: 'hardware:computer'}, {title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]
-              span.link.gray
-                a(href='#{val.href}', target='_blank')
-                  iron-icon(icon="#{val.icon}")
-                  span= val.title
+    paper-drawer-panel(force-narrow)
+      paper-header-panel(drawer)
+        paper-toolbar
+          paper-icon-button(icon='menu', paper-drawer-toggle)
+          span.title= settings.title
+        paper-menu(selected="#{selected}")
+          each val in [{href:'/', icon:'home', title:'Home'}, {href:'/top', icon:'stars', title:'Top TV Shows'}]
+            a(href='#{val.href}')
+              paper-icon-item.gray
+                iron-icon(icon='#{val.icon}', item-icon)
+                | #{val.title}
+      paper-header-panel(main)
+        paper-toolbar
+          paper-icon-button(icon='menu', paper-drawer-toggle)
+          span.title
+            a(href='/')= title
+          form(is="iron-form", method="get", action="/search")
+            paper-input(name='q', label ='Search', no-label-float, required)
+              button.submit(suffix)
+                paper-icon-button(icon="search")
+        main.layout.vertical.center
+          if message
+            paper-toast(text="#{message}", opened, duration="10000")
+          block content
+        footer
+          paper-material(elevation='3')
+            .layout.horizontal.wrap.center-justified
+              each val in [{title: 'by Philipp Schirmer', href: 'http://philipp94831.github.io/', icon: 'hardware:computer'}, {title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]
+                span.link.gray
+                  a(href='#{val.href}', target='_blank')
+                    iron-icon(icon="#{val.icon}")
+                    span= val.title
+  

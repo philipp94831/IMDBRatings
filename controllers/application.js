@@ -5,7 +5,7 @@ var baseUrl = "http://www.imdb.com/";
 module.exports.get_index = function(req, res, next) {
   message = req.session.message;
   req.session.message = undefined;
-  res.render('index', { message: message });
+  res.render('index', { message: message, selected: 0 });
 }
 
 module.exports.get_top = function(req, res, next) {
@@ -38,7 +38,7 @@ module.exports.get_top = function(req, res, next) {
         });
         shows.push(show);
       })
-      res.render('top', { title: 'Top TV Shows', shows: shows });
+      res.render('top', { title: 'Top TV Shows', shows: shows, selected: 1 });
     },
     function() {
       req.session.message = "Error loading Top TV Shows";

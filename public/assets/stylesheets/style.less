@@ -48,6 +48,10 @@ main {
   cursor: pointer;
 }
 
+.selectable-content.paper-menu > .iron-selected paper-icon-item {
+  font-weight: bold;
+}
+
 paper-toolbar {
   .title {
     pointer-events: auto !important;
@@ -58,9 +62,6 @@ paper-toolbar {
   }
   paper-icon-button {
     color: white;
-  }
-  .nav + .nav {
-    padding-left: 20px;
   }
 }
 
