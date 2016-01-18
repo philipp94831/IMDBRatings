@@ -5,7 +5,7 @@ var baseUrl = "http://www.imdb.com/";
 module.exports.get_index = function(req, res, next) {
   message = req.session.message;
   req.session.message = undefined;
-  res.render('index', { message: message });
+  res.render('index', { title: 'Home', message: message });
 }
 
 module.exports.get_top = function(req, res, next) {
