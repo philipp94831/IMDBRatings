@@ -11,8 +11,8 @@ block content
     p.hcenter Visualize IMDb Ratings of TV Shows.
     form#main-search.layout-center(is="iron-form", method="get", action="/search")
       paper-input(name='q', label ='Search for a TV Series', required, size="550")
-        button.submit(suffix)
-          paper-icon-button(icon="search")
+        button.hidden(suffix)
+          paper-icon-button.gray(icon="search")
     .hcenter
       p Have you seen?
       .layout.vertical

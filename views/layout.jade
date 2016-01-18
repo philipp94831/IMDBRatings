@@ -47,6 +47,10 @@ html(ng-app='IMDBRatings')
         paper-toolbar
           paper-icon-button(icon='menu', paper-drawer-toggle)
           span.title= settings.title
+        form(is="iron-form", method="get", action="/search")
+            paper-input(name='q', label ='Search', no-label-float, required)
+              button.hidden(suffix)
+                paper-icon-button.gray(icon="search")
         paper-menu(selected="#{selected}")
           each val in [{href:'/', icon:'home', title:'Home'}, {href:'/top', icon:'stars', title:'Top TV Shows'}]
             a(href='#{val.href}')
@@ -56,12 +60,7 @@ html(ng-app='IMDBRatings')
       paper-header-panel(main)
         paper-toolbar
           paper-icon-button(icon='menu', paper-drawer-toggle)
-          span.title
-            a(href='/')= title
-          form(is="iron-form", method="get", action="/search")
-            paper-input(name='q', label ='Search', no-label-float, required)
-              button.submit(suffix)
-                paper-icon-button(icon="search")
+          span.title= title
         main.layout.vertical.center
           if message
             paper-toast(text="#{message}", opened, duration="10000")

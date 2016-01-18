@@ -3,7 +3,7 @@
   background-color: transparent !important;
 }
 
-.submit {
+.hidden {
   border: 0;
   background: transparent;
   padding: 0;
@@ -52,17 +52,13 @@ main {
   font-weight: bold;
 }
 
-paper-toolbar {
-  .title {
-    pointer-events: auto !important;
-    height: 22px;
-  }
-  paper-input {
-    max-width: 300px;
-  }
-  paper-icon-button {
-    color: white;
-  }
+paper-header-panel[drawer] form {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+paper-toolbar .title {
+  height: 22px;
 }
 
 a {
