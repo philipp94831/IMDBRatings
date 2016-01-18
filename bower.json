@@ -40,6 +40,7 @@
     "paper-dialog": "PolymerElements/paper-dialog#~1.0.3",
     "paper-card": "PolymerElements/paper-card#~1.0.9",
     "paper-material": "PolymerElements/paper-material#~1.0.5",
-    "paper-styles": "PolymerElements/paper-styles#~1.1.2"
+    "paper-styles": "PolymerElements/paper-styles#~1.1.2",
+    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#~1.0.6"
   }
 }

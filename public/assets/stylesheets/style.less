@@ -1,7 +1,3 @@
-body {
-  //font-family: 'Roboto';
-}
-
 .highcharts-loading {
   opacity: 1 !important;
   background-color: transparent !important;
@@ -13,14 +9,14 @@ body {
   padding: 0;
 }
 
-paper-toolbar paper-icon-button {
-  color: white;
-}
+@main-padding: 20px;
+@toolbar-height: 64px;
+@footer-height: 64px;
 
 main {
-  height: ~"calc(100vh - 168px)";
-  width: ~"calc(100vw - 40px)";
-  padding: 20px;
+  height: calc(~"100vh -" (2 * @main-padding + @footer-height + @toolbar-height));
+  width: calc(~"100% -" (2 * @main-padding));
+  padding: @main-padding;
   overflow: auto;
 }
 
@@ -52,13 +48,20 @@ main {
   cursor: pointer;
 }
 
-paper-toolbar .title {
-  pointer-events: auto !important;
-  height: 22px;
-}
-
-paper-toolbar paper-input {
-  max-width: 300px;
+paper-toolbar {
+  .title {
+    pointer-events: auto !important;
+    height: 22px;
+  }
+  paper-input {
+    max-width: 300px;
+  }
+  paper-icon-button {
+    color: white;
+  }
+  .nav + .nav {
+    padding-left: 20px;
+  }
 }
 
 a {
@@ -73,29 +76,23 @@ paper-checkbox {
 footer {
   bottom: 0;
   width: 100%;
-  height: 64px;
-}
-
-footer div {  
-  padding: 18px 0;
+  height: @footer-height;
+  div {  
+    padding: 18px 0;
+  }
 }
 
 .link {
   vertical-align: middle;
   padding: 2px 12px;
-}
-
-.link a > * {
-  vertical-align: middle;
-}
-
-.link a > iron-icon {
-  padding-right: 6px;
-}
-
-ul.link-list {
-  list-style: none;
-  padding-left: 0px;
+  a {
+    > * {
+      vertical-align: middle;
+    }
+    > iron-icon {
+      padding-right: 6px;
+    }
+  }
 }
 
 .no-select {
@@ -107,20 +104,18 @@ ul.link-list {
   user-select: none;
 }
 
-div.error > div > * {
-  vertical-align: middle;
-}
-
-div.error h1 {
-  display: inline;
-}
-
-.layout-center pre {
-  overflow: scroll;
+.error pre {
+  overflow: auto;
 }
 
 div.error {
   width: 80%;
+  h1 {
+    display: inline;
+  }
+  > div > * {
+    vertical-align: middle;
+  }
 }
 
 paper-dialog.info img {
@@ -151,13 +146,15 @@ paper-card + paper-card {
   margin-top: 20px;
 }
 
-.top-title paper-card {
-  margin: 10px;
-  width: ~'calc(100% - 20px)';
-}
-
 .top-title {
   max-width: 450px;
+  paper-card {
+    margin: 10px;
+    width: ~'calc(100% - 20px)';
+  }
+  .summary {
+    overflow-y: auto;
+  }
 }
 
 .summary {
@@ -166,12 +163,4 @@ paper-card + paper-card {
 
 .top-title img, .top-title .summary {
   height: 150px;
-}
-
-.top-title .summary {
-  overflow-y: auto;
-}
-
-paper-toolbar .nav + .nav {
-  padding-left: 20px;
 }
