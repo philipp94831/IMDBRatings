@@ -36,7 +36,7 @@ main {
 
 .full {
   width: 100%;
-  height: calc(~"100vh -" (2 * @main-padding + @footer-height + @toolbar-height));
+  min-height: calc(~"100vh -" (2 * @main-padding + @footer-height + @toolbar-height));
 }
 
 #main-search {
@@ -73,7 +73,7 @@ paper-checkbox {
 footer {
   width: 100%;
   height: @footer-height;
-  div {  
+  div {
     padding: 18px 0;
   }
 }
