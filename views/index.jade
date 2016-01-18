@@ -9,7 +9,7 @@ block scripts
 block content
   .layout.vertical.layout-vcenter(ng-controller='ApplicationController')
     p.hcenter Visualize IMDb Ratings of TV Shows.
-    form#main-search.layout-center(is="iron-form", method="get", action="/search")
+    form#main-search.layout-center(is="iron-form", role='search', method="get", action="/search")
       paper-input(name='q', label ='Search for a TV Series', required, size="550")
         button.hidden(suffix)
           paper-icon-button.gray(icon="search")
