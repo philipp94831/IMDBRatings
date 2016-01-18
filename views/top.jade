@@ -4,12 +4,12 @@ block scripts
   script(src='/controllers/application.js')
 
 block content
-  div.layout-flex.row.wrap
+  div.layout.horizontal.wrap.center.around-justified
     each show in shows
-      .top-title.layout-center
+      .top-title
         paper-card(heading='#{show.title}')          
           a(href='/#{show.id}')
-            .card-content.layout-flex
+            .card-content.layout.horizontal
               img(src='#{show.img}')
               .summary
                 p Rated #{show.rating}/10

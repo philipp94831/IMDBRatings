@@ -7,10 +7,10 @@ block scripts
     var title="#{name}";
 
 block content
-  div(ng-controller='ChartController')
+  .full(ng-controller='ChartController')
     div
       highchart(config="highchartsNG")
-      .layout-flex.wrap.row.center.no-select
+      .layout.horizontal.wrap.center-justified.no-select
         paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
         paper-checkbox(name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline(seasonTrendline)") Show Season Trendlines
         paper-radio-group.hcenter(ng-model='scale')
@@ -18,7 +18,7 @@ block content
           paper-radio-button(name='full') Scale Y-Axis from 0 to 10
     paper-dialog#dialog.info
       h2 #{name} #{time}
-      .layout-flex
+      .layout.horizontal
         img(src='#{img}')
         div.summary
           p Rated #{rating}/10 by #{users} users

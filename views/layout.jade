@@ -43,7 +43,7 @@ html(ng-app='IMDBRatings')
     paper-header-panel
       paper-toolbar
         span.title
-          a(href='/') IMDb Ratings
+          a(href='/')= settings.title
         span.nav.link
           a(href='/top')
             iron-icon(icon="stars")
@@ -52,15 +52,13 @@ html(ng-app='IMDBRatings')
           paper-input#myinput(name='q', label ='Search', no-label-float, required)
             button.submit(suffix)
               paper-icon-button(icon="search")
-      main
+      main.layout.vertical.center
         if message
           paper-toast(text="#{message}", opened, duration="10000")
-        div
-          div
-            block content
+        block content
       footer
         paper-material(elevation='3')
-          .layout-flex.row.wrap.center
+          .layout.horizontal.wrap.center-justified
             each val in [{title: 'by Philipp Schirmer', href: 'http://philipp94831.github.io/', icon: 'hardware:computer'}, {title: 'Code', href: 'https://github.com/philipp94831/IMDBRatings', icon: 'code'}, {title: 'GitHub', href: 'https://github.com/philipp94831', icon: 'account-circle'}, {title: 'Google+', href: 'https://plus.google.com/+PhilippSchirmer', icon: 'account-circle'}, {title: 'Twitter', href: 'https://twitter.com/philipp94831', icon: 'account-circle'}, {title: 'Inspired by Graph TV', href: 'http://graphtv.kevinformatics.com/', icon: 'info-outline'}]
               span.link.gray
                 a(href='#{val.href}', target='_blank')

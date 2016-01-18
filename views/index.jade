@@ -4,15 +4,15 @@ block scripts
   script(src='/controllers/application.js')
 
 block content
-  #main.layout-center.layout-flex.column
+  .layout.vertical.layout-vcenter(ng-controller='ApplicationController')
     p.hcenter Visualize IMDb Ratings of TV Shows.
-    form(is="iron-form", method="get", action="/search")
-      paper-input(name='q', label ='Search for a TV Series', required)
+    form#main-search.layout-center(is="iron-form", method="get", action="/search")
+      paper-input(name='q', label ='Search for a TV Series', required, size="550")
         button.submit(suffix)
           paper-icon-button(icon="search")
     .hcenter
       p Have you seen?
-      .layout-flex.column
+      .layout.vertical
         each val in [{title: 'The Sopranos', id: 'tt0141842'}, {title: 'Breaking Bad', id: 'tt0903747'}, {title: 'Better Call Saul', id: 'tt3032476'}]
           span.link.gray
             a(href='/#{val.id}')
