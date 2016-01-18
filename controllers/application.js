@@ -15,6 +15,7 @@ module.exports.get_top = function(req, res, next) {
       shows = [];
       elements.each(function() {
         show = {};
+        show.rank = window.$(this).find('td.number').text().match(/(\d+)/)[1];
         show.title = window.$(this).find('td.title > a').text().trim();
         var regex = /title\/(.+)\//
         var result = window.$(this).find('td.title > a').attr('href').match(regex);

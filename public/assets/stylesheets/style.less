@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto';
+  //font-family: 'Roboto';
 }
 
 .highcharts-loading {
@@ -85,10 +85,6 @@ footer div {
   padding: 2px 12px;
 }
 
-.gray {  
-  color: #424242;
-}
-
 .link a > * {
   vertical-align: middle;
 }
@@ -109,10 +105,6 @@ ul.link-list {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-iron-icon.error {
-  color: #F44336;
 }
 
 div.error > div > * {
@@ -172,8 +164,12 @@ paper-card + paper-card {
   margin-left: 20px;
 }
 
-.top-title img {
+.top-title img, .top-title .summary {
   height: 150px;
+}
+
+.top-title .summary {
+  overflow-y: auto;
 }
 
 paper-toolbar .nav + .nav {

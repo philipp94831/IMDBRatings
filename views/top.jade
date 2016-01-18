@@ -7,7 +7,7 @@ block content
   div.layout.horizontal.wrap.center.around-justified
     each show in shows
       .top-title
-        paper-card(heading='#{show.title}')          
+        paper-card(heading='#{show.rank}. #{show.title}')          
           a(href='/#{show.id}')
             .card-content.layout.horizontal
               img(src='#{show.img}')
