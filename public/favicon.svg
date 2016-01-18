@@ -15,7 +15,10 @@
    id="svg3484"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="favicon.svg">
+   sodipodi:docname="favicon.svg"
+   inkscape:export-filename="D:\Users\Philipp\Coding\Projects\node.js\imdb_ratings\public\favicon.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs3486" />
   <sodipodi:namedview
@@ -25,11 +28,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0792405"
-     inkscape:cx="233.36711"
-     inkscape:cy="-30.75395"
+     inkscape:zoom="45.254834"
+     inkscape:cx="4.7855555"
+     inkscape:cy="6.5987949"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -38,7 +41,13 @@
      inkscape:window-maximized="1"
      inkscape:snap-center="true"
      inkscape:snap-object-midpoints="true"
-     units="px">
+     units="px"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:bbox-nodes="true"
+     inkscape:bbox-paths="true"
+     inkscape:snap-intersection-paths="true">
     <inkscape:grid
        type="xygrid"
        id="grid3336" />
@@ -59,7 +68,8 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1036.3621)">
+     transform="translate(0,-1036.3621)"
+     style="display:none">
     <g
        id="g4144"
        style="fill:#3f51b5;fill-opacity:1">
@@ -72,7 +82,7 @@
          d="m 13.727273,1038.6349 -11.4545456,0 c -0.7,0 -1.2727273,0.5727 -1.2727273,1.2727 l 0,7.6362 c 0,0.7001 0.5727273,1.2728 1.2727273,1.2728 l 3.1818182,0 0,1.2727 5.0909094,0 0,-1.2727 3.181818,0 c 0.7,0 1.266364,-0.5727 1.266364,-1.2728 L 15,1039.9076 c 0,-0.7 -0.572727,-1.2727 -1.272727,-1.2727 z m 0,8.909 -11.4545456,0 0,-7.6363 11.4545456,0 0,7.6363 z"
          style="fill:#3f51b5;fill-opacity:1" />
       <path
-         style="stroke:none;stroke-opacity:1;fill:#3f51b5;fill-opacity:1"
+         style="fill:#3f51b5;fill-opacity:1;stroke:none;stroke-opacity:1"
          inkscape:export-ydpi="65.454544"
          inkscape:export-xdpi="65.454544"
          inkscape:export-filename="D:\Users\Philipp\Coding\Projects\node.js\imdb_ratings\public\favicon.png"
@@ -80,5 +90,32 @@
          id="path8"
          d="m 9.909091,1040.8621 1.092954,1.093 -2.3290903,2.3291 -1.9090909,-1.9091 -3.536591,3.5414 0.6729547,0.6729 2.8636363,-2.8637 1.9090909,1.9092 3.0068183,-3.0021 1.092954,1.0929 0,-2.8636 z" />
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#3f51b5;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1.5,3.5 0,9 13.000001,0 0,-9 z"
+       id="path4153"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#3f51b5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 3.3481067,10.244669 3.1321488,-2.9999997 2.0880992,2 3.1321493,-3"
+       id="path4155"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#3f51b5;fill-opacity:1;fill-rule:evenodd;stroke:#3f51b5;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 10.656454,5.2446693 2.088099,0 0,2 z"
+       id="path4549"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#3f51b5;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4551"
+       width="6"
+       height="2"
+       x="5"
+       y="12" />
   </g>
 </svg>
