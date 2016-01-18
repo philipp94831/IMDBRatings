@@ -1,8 +1,9 @@
 extends layout
 
 block content
-  div.error.layout-center.layout-vcenter
-    .hcenter
-      iron-icon.error(icon='report')
-      h1 #{error.status} #{error.message}
-    pre #{error.stack}
+  .layout.vertical.center.full
+    div.error.layout-center.layout-vcenter
+      .hcenter
+        iron-icon.error(icon='report')
+        h1 #{error.status} #{error.message}
+      pre #{error.stack}

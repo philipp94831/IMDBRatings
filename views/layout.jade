@@ -61,7 +61,7 @@ html(ng-app='IMDBRatings')
         paper-toolbar
           paper-icon-button(icon='menu', paper-drawer-toggle)
           span.title= title
-        main.layout.vertical.center
+        main
           if message
             paper-toast(text="#{message}", opened, duration="10000")
           block content
