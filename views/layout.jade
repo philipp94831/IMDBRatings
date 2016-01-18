@@ -52,7 +52,7 @@ html(ng-app='IMDBRatings')
               button.hidden(suffix)
                 paper-icon-button.gray(icon="search")
         paper-menu(selected="#{selected}")
-          each val in [{href:'/', icon:'home', title:'Home'}, {href:'/top', icon:'stars', title:'Top TV Shows'}]
+          each val in [{href:'/', icon:'home', title:'Home'}, {href:'/top', icon:'star', title:'Top TV Shows'}]
             a(href='#{val.href}')
               paper-icon-item.gray
                 iron-icon(icon='#{val.icon}', item-icon)
