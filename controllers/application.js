@@ -22,14 +22,10 @@ module.exports.get_top = function(req, res, next) {
         show.id = result[1];
         show.rating = window.$(this).find('td.title > div > div > span.rating-rating > span.value').text().trim();
         src = window.$(this).find('td.image > a > img').attr('src');
-        if(src.match(/.*jpg/)) {
-          result = src.match(/(\.[^\.]+)\.jpg/);
-          show.img = src.replace(result[1], '');
-        } else if(src.match(/.*png/)) {
-          result = src.match(/(\.[^\.]+)\.png/);
-          show.img = src.replace(result[1], '');
-        } else {
-          show.img = src;
+        show.img = src;
+        result = src.match(/(.*\..*\._)S[XY]\d+(.*CR)(\d+\.?\d*).*\.(.*)/);
+        if(src !== 'http://i.media-imdb.com/images/SFa26455c07afc3c94f52e95de50d5d814/realm/tv_series.gif') {
+          show.img = result[1] + 'SY150' + result[2] + (parseInt(result[3]) * 150 / 74) + ',0,109,150_.' + result[4];
         }
         show.outline = window.$(this).find('td.title > span.outline').text().trim();
         show.actors = [];
