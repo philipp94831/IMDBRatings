@@ -38,7 +38,9 @@ module.exports.get_top = function(req, res, next) {
         });
         shows.push(show);
       })
-      res.render('top', { title: 'Top TV Shows', shows: shows });
+      message = req.session.message;
+      req.session.message = undefined;
+      res.render('top', { title: 'Top TV Shows', shows: shows, message: message });
     },
     function() {
       req.session.message = "Error loading Top TV Shows";
@@ -64,7 +66,9 @@ module.exports.get = function(req, res, next) {
         window.$('#overview-top > div:nth-child(9) > a > span').each(function() {
           res.locals.actors.push(window.$(this).text().trim());
         });
-        res.render('chart', { title: title });
+        message = req.session.message;
+        req.session.message = undefined;
+        res.render('chart', { title: title, message: message });
       } else {
         req.session.message = "Title is not a series";
         res.redirect('/');
