@@ -17,6 +17,14 @@ function($scope, $http){
     })
   }
 
+  $scope.toggleSeriesLine = function(value) {
+    $scope.highchartsNG.series.forEach(function(series) {
+      if (series.name.match(/Series Overall/)) {
+        series.visible = !value;
+      }
+    })
+  }
+
   $scope.toggleSeasonTrendline = function(value) {
     $scope.highchartsNG.series.forEach(function(series) {
       if (series.name.match(/Season \d+ Trendline/)) {
@@ -149,24 +157,26 @@ function($scope, $http){
     series: [],
     func: function(retChart) {
       chart = retChart;
+
+      $http.get("data/" + id).then(function successCallback(response) {
+        $scope.highchartsNG.loading = false;
+        $scope.highchartsNG.series = transform(response.data);
+      }, function errorCallback(response) {
+        $('.loading-spinner').attr('icon', 'error').removeClass('fa-spin').addClass('error');
+      });
     }
   };
 
   $scope.scale = 'auto';
 
   $scope.seriesTrendline = false;
+  $scope.seriesLine = false;
   $scope.seasonTrendline = true;
-
-  $http.get("data/" + id).then(function successCallback(response) {
-    $scope.highchartsNG.loading = false;
-    $scope.highchartsNG.series = transform(response.data);
-  }, function errorCallback(response) {
-    $('.loading-spinner').attr('icon', 'error').removeClass('fa-spin').addClass('error');
-  });
 
   function transform(data) {
     values = [];
     values.push(buildShowTrendline(data));
+    values.push(buildOverallLine(data));
     data.seasons.forEach(function(season) {
       values.push(buildTrendline(season));
       values.push(buildScatter(season));
@@ -219,6 +229,30 @@ function($scope, $http){
     };
     trendline.zIndex = 1;
     trendline.visible = $scope.seriesTrendline;
+    return trendline;
+  }
+
+  function buildOverallLine(show) {
+    trendline = {};
+    trendline.type = 'line';
+    trendline.color = '#9E9E9E';
+    trendline.name = 'Series Overall';
+    trendline.data = [{x: show.trendline[0].x, y: show.rating}, {x: show.trendline[1].x, y: show.rating}];
+    trendline.marker = {
+      enabled: false,
+      states: {
+        hover: {
+          enabled: false
+        }
+      }
+    };
+    trendline.states = {
+      hover: {
+        enabled: false
+      }
+    };
+    trendline.zIndex = 1;
+    trendline.visible = $scope.seriesLine;
     return trendline;
   }
 

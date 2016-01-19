@@ -16,6 +16,7 @@ block content
       highchart(config="highchartsNG")
       .layout.horizontal.wrap.center-justified.no-select
         paper-checkbox(name='seriesTrendline', ng-model="seriesTrendline", ng-change="toggleSeriesTrendline(seriesTrendline)") Show Series Trendline
+        paper-checkbox(name='seriesLine', ng-model="seriesLine", ng-change="toggleSeriesLine(seriesLine)") Show Overall Rating for Series
         paper-checkbox(name='seasonTrendline', ng-model="seasonTrendline", ng-change="toggleSeasonTrendline(seasonTrendline)") Show Season Trendlines
         paper-radio-group.hcenter(ng-model='scale')
           paper-radio-button(name='auto') Auto Scale Y-Axis
@@ -27,7 +28,8 @@ block content
         div.summary
           p Rated #{rating}/10 by #{users} users
           p= summary
-          p With #{actors.join(', ')}
+          if actors.length > 0
+            p With #{actors.join(', ')}
       .buttons
         span.link.gray
           a(href='http://imdb.com/title/#{id}/', target='_blank')

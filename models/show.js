@@ -17,6 +17,14 @@ Show.prototype.getTitle = function() {
   return this.title;
 }
 
+Show.prototype.setRating = function(rating) {
+  this.rating = rating;
+}
+
+Show.prototype.getRating = function() {
+  return this.rating;
+}
+
 Show.prototype.getSeasons = function() {
   return this.seasons;
 }

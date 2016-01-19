@@ -12,6 +12,8 @@ module.exports.get = function(req, res, next) {
       var show = new Show(id);
       var title = window.$('#overview-top > h1 > span.itemprop').text().trim();
       show.setTitle(title);
+      var rating = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > strong > span').text().trim();
+      show.setRating(parseFloat(rating));
       webParser.getAndParse(
         baseUrl + "title/" + id + '/episodes',
         function (err, window) {
