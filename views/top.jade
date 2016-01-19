@@ -19,7 +19,7 @@ block content
               .summary
                 p Rated #{show.rating}/10
                 p= show.outline
-                if actors.length > 0
+                if show.actors.length > 0
                   p With #{show.actors.join(', ')}
           .card-actions
             span.link.gray
