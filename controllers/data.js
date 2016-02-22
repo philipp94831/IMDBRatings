@@ -10,9 +10,9 @@ module.exports.get = function(req, res, next) {
     baseUrl + "title/" + id + '/',
     function (err, window) {
       var show = new Show(id);
-      var title = window.$('#overview-top > h1 > span.itemprop').text().trim();
+      var title = window.$('#title-overview-widget > div.vital > div.title_block > div > div.titleBar > div.title_wrapper > h1').text().trim();
       show.setTitle(title);
-      var rating = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > strong > span').text().trim();
+      var rating = window.$('#title-overview-widget > div.vital > div.title_block > div > div.ratings_wrapper > div.imdbRating > div.ratingValue > strong > span').text().trim();
       show.setRating(parseFloat(rating));
       webParser.getAndParse(
         baseUrl + "title/" + id + '/episodes',

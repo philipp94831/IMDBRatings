@@ -48,18 +48,22 @@ module.exports.get_top = function(req, res, next) {
 module.exports.get = function(req, res, next) {
   webParser.getAndParse(baseUrl + "title/" + req.params.id + '/',
     function (err, window) {
-      var type = window.$('#overview-top > div.infobar').text().trim();
+      var type = window.$('#title-overview-widget > div.vital > div.title_block > div > div.titleBar > div.title_wrapper > div > a:last-child').text().trim();
       if(type.startsWith('TV Series')) {
-        var title = window.$('#overview-top > h1 > span.itemprop').text().trim();
+        var title = window.$('#title-overview-widget > div.vital > div.title_block > div > div.titleBar > div.title_wrapper > h1').text().trim();
         res.locals.name = title;
         res.locals.id = req.params.id;
-        res.locals.time = window.$('#overview-top > h1 > span.nobr').text();
-        res.locals.img = window.$('#img_primary > div.image > a > img').attr('src');
-        res.locals.summary = window.$('#overview-top > p:nth-child(6)').text().trim();
-        res.locals.rating = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > strong > span').text().trim();
-        res.locals.users = window.$('#overview-top > div.star-box.giga-star > div.star-box-details > a:nth-child(3) > span').text().trim();
+        rawTime = window.$('#title-overview-widget > div.vital > div.title_block > div > div.titleBar > div.title_wrapper > div.subtext > a:last-child').text();
+        matches = rawTime.match(/\((\d+.*)\)/);
+        if(matches && matches.length > 1) {
+          res.locals.time = matches[1];
+        }
+        res.locals.img = window.$('#title-overview-widget > div.vital > div.slate_wrapper > div.poster > a > img').attr('src');
+        res.locals.summary = window.$('#title-overview-widget > div.plot_summary_wrapper > div.plot_summary > div.summary_text').text().trim();
+        res.locals.rating = window.$('#title-overview-widget > div.vital > div.title_block > div > div.ratings_wrapper > div.imdbRating > div.ratingValue > strong > span').text().trim();
+        res.locals.users = window.$('#title-overview-widget > div.vital > div.title_block > div > div.ratings_wrapper > div.imdbRating > a > span').text().trim();
         res.locals.actors = [];
-        window.$('#overview-top > div:nth-child(9) > a > span').each(function() {
+        window.$('#title-overview-widget > div.plot_summary_wrapper > div.plot_summary > div:nth-child(3) > span > a > span').each(function() {
           res.locals.actors.push(window.$(this).text().trim());
         });
         message = req.session.message;
